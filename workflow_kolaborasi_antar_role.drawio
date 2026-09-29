@@ -1,0 +1,192 @@
+<mxfile host="app.diagrams.net" agent="Antigravity">
+  <diagram id="kolaborasi-antar-role-jelas" name="Peta Kolaborasi Antar-Role">
+    <mxGraphModel dx="238" dy="97" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1500" background="#F8FAFC" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="header_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E293B;strokeColor=#0F172A;strokeWidth=1;arcSize=4;" value="" vertex="1">
+          <mxGeometry height="80" width="1380" x="60" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="header_title" parent="header_box" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" value="&lt;font color=&quot;#ffffff&quot;&gt;&lt;b style=&quot;font-size: 18px;&quot;&gt;PETA KOLABORASI ANTAR-ROLE TERBARU (END-TO-END BUSINESS WORKFLOW)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 12px; color: #94A3B8;&quot;&gt;Arsitektur 3 Pilar Monitoring Utama &amp;amp; Procurement Hub (DMO &amp;bull; OSM QC &amp;bull; OSM Service Manager &amp;bull; Procurement &amp;bull; Admin)&lt;/span&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="1380" y="12" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_dmo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FDFA;strokeColor=#0D9488;strokeWidth=1.5;align=center;verticalAlign=middle;arcSize=6;" value="&lt;b style=&quot;font-size: 13px; color: #0F766E;&quot;&gt;DATA MANAGEMENT&lt;br&gt;OFFICER (DMO)&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px; color: #334155; line-height: 1.6;&quot;&gt;&amp;bull; &lt;b style=&quot;color:#0D9488;&quot;&gt;Eksklusif Input Proyek&lt;/b&gt;&lt;br&gt;&amp;bull; Entri &amp;amp; Impor Realisasi&lt;br&gt;&amp;bull; Inisiator Draf BASTO&lt;br&gt;&amp;bull; Terbitkan SPK Proyek&lt;/span&gt;" vertex="1">
+          <mxGeometry height="195" width="260" x="60" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="card_dmo" parent="1" style="swimlane;whiteSpace=wrap;html=1;rounded=1;arcSize=3;strokeColor=#0D9488;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Helvetica;startSize=28;" value="&lt;b style=&quot;color: #0F766E; font-size: 12px;&quot;&gt;TAHAP 1: PENDAFTARAN PROYEK, REALISASI BIAYA &amp;amp; PENGAJUAN BASTO&lt;/b&gt;" vertex="1">
+          <mxGeometry height="195" width="800" x="350" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="step_dmo_master" parent="card_dmo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFBF1;strokeColor=#14B8A6;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 11.5px; color: #0F766E;&quot;&gt;1. Pendaftaran Master Proyek&lt;br&gt;&amp;amp; Pagu Kontrak (Hak DMO)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #0D9488;&quot;&gt;+ Entri / Impor Realisasi&lt;/span&gt;" vertex="1">
+          <mxGeometry height="55" width="220" x="25" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="step_dmo_basto" parent="card_dmo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFBF1;strokeColor=#14B8A6;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 11.5px; color: #0F766E;&quot;&gt;2. Pembuatan Draf BASTO&lt;br&gt;&amp;amp; Unggah Lampiran PDF&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size: 10px; color: #64748B;&quot;&gt;(Status: DRAFT)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="55" width="220" x="290" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="step_dmo_submit" parent="card_dmo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCFBF1;strokeColor=#14B8A6;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 11.5px; color: #0F766E;&quot;&gt;3. Pengajuan Berkas BASTO&lt;br&gt;(Single / Batch Submit)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #0F766E;&quot;&gt;&lt;i&gt;Menuju Antrean Inspeksi QC&lt;/i&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="55" width="220" x="555" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="step_dmo_reupload" parent="card_dmo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#EF4444;strokeWidth=1;dashed=1;align=center;verticalAlign=middle;" value="&lt;b style=&quot;color: #DC2626; font-size: 11px;&quot;&gt;Unggah Ulang Berkas Revisi Pasca Temuan QC / Penolakan SM (Reupload Revision)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="45" width="510" x="60" y="128" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_dmo_1_2" edge="1" parent="card_dmo" source="step_dmo_master" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0D9488;strokeWidth=1.5;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="step_dmo_basto">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_dmo_2_3" edge="1" parent="card_dmo" source="step_dmo_basto" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0D9488;strokeWidth=1.5;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="step_dmo_submit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="doc_dmo" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFFFF;strokeColor=#0D9488;strokeWidth=1.5;size=18;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 12px; color: #0F766E;&quot;&gt;OUTPUT DOKUMEN:&lt;br&gt;Pilar 1: Inisiasi BASTO&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10.5px; color: #334155; line-height: 1.5;&quot;&gt;&amp;bull; Master Proyek &amp;amp; Pagu Kontrak&lt;br&gt;&amp;bull; Entri Realisasi Biaya Lapangan&lt;br&gt;&amp;bull; Berkas Draf BASTO &amp;amp; Lampiran PDF&lt;br&gt;&lt;b style=&quot;color: #2563EB;&quot;&gt;Status: SUBMITTED&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="195" width="260" x="1180" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_qc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#3B82F6;strokeWidth=1.5;align=center;verticalAlign=middle;arcSize=6;" value="&lt;b style=&quot;font-size: 13px; color: #1D4ED8;&quot;&gt;OSM QUALITY&lt;br&gt;CONTROL (QC)&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px; color: #334155; line-height: 1.6;&quot;&gt;&amp;bull; Dual Inspector (QC &amp;amp; QC2)&lt;br&gt;&amp;bull; &lt;b style=&quot;color:#2563EB;&quot;&gt;Checklist 4 Kriteria Mutu&lt;/b&gt;&lt;br&gt;&amp;bull; Proteksi QC Gatekeeper&lt;br&gt;&amp;bull; Penerbit Sertifikasi Digital&lt;/span&gt;" vertex="1">
+          <mxGeometry height="225" width="260" x="60" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="card_qc" parent="1" style="swimlane;whiteSpace=wrap;html=1;rounded=1;arcSize=3;strokeColor=#3B82F6;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Helvetica;startSize=28;" value="&lt;b style=&quot;color: #1D4ED8; font-size: 12px;&quot;&gt;TAHAP 2: VERIFIKASI KEPATUHAN TEKNIS &amp;amp; SERTIFIKASI MUTU DIGITAL&lt;/b&gt;" vertex="1">
+          <mxGeometry height="225" width="800" x="350" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="step_qc_inspect" parent="card_qc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#3B82F6;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 11px; color: #1E40AF;&quot;&gt;1. Inspeksi Antrean BASTO&lt;br&gt;&amp;amp; Unduh Lampiran Berkas PDF&lt;/b&gt;" vertex="1">
+          <mxGeometry height="55" width="200" x="25" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="step_qc_eval" parent="card_qc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#3B82F6;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 11px; color: #1E40AF;&quot;&gt;2. Evaluasi 4 Checklist QC:&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 9.5px; color: #1E3A8A;&quot;&gt;&amp;bull; Dok. Admin &amp;bull; SPK Match&lt;br&gt;&amp;bull; BAUT Teknis &amp;bull; Bukti Fisik&lt;/span&gt;" vertex="1">
+          <mxGeometry height="55" width="220" x="260" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="dec_qc" parent="card_qc" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#F59E0B;strokeWidth=1.5;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 10.5px; color: #92400E;&quot;&gt;Lolos Mutu?&lt;br&gt;(4 Kriteria)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="135" x="535" y="37" as="geometry" />
+        </mxCell>
+        <mxCell id="step_qc_pass" parent="card_qc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;span style=&quot;font-size: 11px; color: #047857;&quot;&gt;Terbitkan Kode Sertifikasi Mutu Digital &lt;b&gt;QC-PASS-YYYYMM-XXXXXX&lt;/b&gt;&lt;br&gt;&lt;i&gt;(Status QC: VERIFIED &amp;rarr; Proteksi Gatekeeper Dibuka untuk Service Manager)&lt;/i&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="48" width="750" x="25" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_qc_1_2" edge="1" parent="card_qc" source="step_qc_inspect" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3B82F6;strokeWidth=1.5;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="step_qc_eval">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_qc_2_dec" edge="1" parent="card_qc" source="step_qc_eval" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#3B82F6;strokeWidth=1.5;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dec_qc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_qc_dec_pass" edge="1" parent="card_qc" source="dec_qc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#10B981;strokeWidth=2;endArrow=classic;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.7;entryY=0;entryDx=0;entryDy=0;fontSize=10;fontColor=#047857;" target="step_qc_pass" value="&lt;b style=&quot;color:#047857;&quot;&gt;[YA] Lolos Mutu&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="doc_qc" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFFFF;strokeColor=#3B82F6;strokeWidth=1.5;size=18;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 12px; color: #1D4ED8;&quot;&gt;OUTPUT DOKUMEN:&lt;br&gt;Sertifikat Mutu Digital&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10.5px; color: #334155; line-height: 1.5;&quot;&gt;&amp;bull; Kode: &lt;b&gt;QC-PASS-YYYYMM&lt;/b&gt;&lt;br&gt;&amp;bull; 4 Kriteria Checklist Lolos&lt;br&gt;&amp;bull; Stempel Waktu Verifikasi&lt;br&gt;&lt;b style=&quot;color: #059669;&quot;&gt;Gatekeeper: UNLOCKED&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="225" width="260" x="1180" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_sm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#10B981;strokeWidth=1.5;align=center;verticalAlign=middle;arcSize=6;" value="&lt;b style=&quot;font-size: 13px; color: #047857;&quot;&gt;OSM SERVICE&lt;br&gt;MANAGER (SM)&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px; color: #334155; line-height: 1.6;&quot;&gt;&amp;bull; Pengendali Pagu &amp;amp; Cost&lt;br&gt;&amp;bull; &lt;b style=&quot;color:#059669;&quot;&gt;Evaluator Prognosa&lt;/b&gt;&lt;br&gt;&amp;bull; Pengawas Serapan Biaya&lt;br&gt;&amp;bull; Otorisator Akhir BASTO&lt;/span&gt;" vertex="1">
+          <mxGeometry height="225" width="260" x="60" y="635" as="geometry" />
+        </mxCell>
+        <mxCell id="card_sm" parent="1" style="swimlane;whiteSpace=wrap;html=1;rounded=1;arcSize=3;strokeColor=#10B981;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Helvetica;startSize=28;" value="&lt;b style=&quot;color: #047857; font-size: 12px;&quot;&gt;TAHAP 3: EVALUASI PILAR COST KONTRAK &amp;amp; PERSETUJUAN RESMI BASTO&lt;/b&gt;" vertex="1">
+          <mxGeometry height="225" width="800" x="350" y="635" as="geometry" />
+        </mxCell>
+        <mxCell id="step_sm_open" parent="card_sm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 11px; color: #065F46;&quot;&gt;1. Buka BASTO Lolos QC&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size: 10px; color: #047857;&quot;&gt;(Tab: Ready to Approve)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="55" width="200" x="25" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="step_sm_cost" parent="card_sm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 11px; color: #065F46;&quot;&gt;2. Evaluasi Pilar 2: Cost Kontrak&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #047857;&quot;&gt;&amp;bull; Pagu Proyek vs Realisasi Biaya&lt;br&gt;&amp;bull; Update Prognosa Bulanan&lt;/span&gt;" vertex="1">
+          <mxGeometry height="55" width="220" x="260" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="dec_sm" parent="card_sm" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#F59E0B;strokeWidth=1.5;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 10px; color: #92400E;&quot;&gt;Persetujuan SM&lt;br&gt;(Approve / Reject)?&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="135" x="535" y="37" as="geometry" />
+        </mxCell>
+        <mxCell id="step_sm_approved" parent="card_sm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;span style=&quot;font-size: 11px; color: #047857;&quot;&gt;Persetujuan Dokumen BASTO (Single / Batch Approval)&lt;br&gt;&lt;b&gt;(Status BASTO: APPROVED &amp;rarr; Dokumen Sah Menjadi Syarat Bayar Pengadaan)&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="48" width="750" x="25" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_sm_1_2" edge="1" parent="card_sm" source="step_sm_open" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#10B981;strokeWidth=1.5;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="step_sm_cost">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_sm_2_dec" edge="1" parent="card_sm" source="step_sm_cost" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#10B981;strokeWidth=1.5;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="dec_sm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_sm_dec_app" edge="1" parent="card_sm" source="dec_sm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#10B981;strokeWidth=2;endArrow=classic;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.7;entryY=0;entryDx=0;entryDy=0;fontSize=10;fontColor=#047857;" target="step_sm_approved" value="&lt;b style=&quot;color:#047857;&quot;&gt;[SETUJU]&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="doc_sm" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFFFF;strokeColor=#10B981;strokeWidth=1.5;size=18;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 12px; color: #047857;&quot;&gt;OUTPUT DOKUMEN:&lt;br&gt;Pilar 2: Cost Kontrak Valid&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10.5px; color: #334155; line-height: 1.5;&quot;&gt;&amp;bull; BASTO Resmi Disetujui (Approved)&lt;br&gt;&amp;bull; Rekap Serapan Pagu Kontrak&lt;br&gt;&amp;bull; Executive Summary Proyek&lt;br&gt;&lt;b style=&quot;color: #059669;&quot;&gt;Status: APPROVED&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="225" width="260" x="1180" y="635" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_proc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#F97316;strokeWidth=1.5;align=center;verticalAlign=middle;arcSize=6;" value="&lt;b style=&quot;font-size: 13px; color: #C2410C;&quot;&gt;PROCUREMENT&lt;br&gt;HUB OFFICER&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px; color: #334155; line-height: 1.6;&quot;&gt;&amp;bull; Direktori Rekanan Vendor&lt;br&gt;&amp;bull; Penerbitan PO Pengadaan&lt;br&gt;&amp;bull; &lt;b style=&quot;color:#EA580C;&quot;&gt;Verifikasi 3-Way Match&lt;/b&gt;&lt;br&gt;&amp;bull; Evaluator Invoice Vendor&lt;/span&gt;" vertex="1">
+          <mxGeometry height="205" width="260" x="60" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="card_proc" parent="1" style="swimlane;whiteSpace=wrap;html=1;rounded=1;arcSize=3;strokeColor=#F97316;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Helvetica;startSize=28;" value="&lt;b style=&quot;color: #C2410C; font-size: 12px;&quot;&gt;TAHAP 4: PROCUREMENT HUB &amp;amp; VERIFIKASI 3-WAY MATCH (PO + BASTO + TAGIHAN)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="205" width="800" x="350" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="step_proc_po" parent="card_proc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#F97316;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 10.5px; color: #9A3412;&quot;&gt;1. Penerbitan Purchase Order&lt;br&gt;(PO / SPK Pengadaan Vendor)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 9.5px; color: #EA580C;&quot;&gt;+ Upload File Kontrak PDF&lt;/span&gt;" vertex="1">
+          <mxGeometry height="55" width="220" x="25" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="step_proc_inv" parent="card_proc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#F97316;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 10.5px; color: #9A3412;&quot;&gt;2. Evaluasi Pilar 3: Invoice Vendor&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 9.5px; color: #EA580C;&quot;&gt;&amp;bull; Pantau Tagihan Belum Verifikasi&lt;br&gt;&amp;bull; Analisis Prognosa vs Actual Spend&lt;/span&gt;" vertex="1">
+          <mxGeometry height="55" width="225" x="285" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="step_proc_match" parent="card_proc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#F97316;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 10.5px; color: #9A3412;&quot;&gt;3. Rekonsiliasi 3-Way Match:&lt;/b&gt;&lt;br&gt;&lt;b style=&quot;font-size: 10px; color: #0284C7;&quot;&gt;PO&lt;/b&gt; + &lt;b style=&quot;font-size: 10px; color: #059669;&quot;&gt;BASTO Approved&lt;/b&gt; + &lt;b style=&quot;font-size: 10px; color: #EA580C;&quot;&gt;Tagihan&lt;/b&gt;" vertex="1">
+          <mxGeometry height="55" width="225" x="550" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="step_proc_completed" parent="card_proc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=1.2;align=center;verticalAlign=middle;" value="&lt;span style=&quot;font-size: 11px; color: #047857;&quot;&gt;Konfirmasi Kelengkapan Pengadaan Sah (Complete 3-Way Match Verification)&lt;br&gt;&lt;b&gt;(Status PO: COMPLETED &amp;rarr; Berkas Pengadaan Terverifikasi Sah Sempurna)&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="48" width="750" x="25" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_proc_1_2" edge="1" parent="card_proc" source="step_proc_po" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F97316;strokeWidth=1.5;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="step_proc_inv">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_proc_2_3" edge="1" parent="card_proc" source="step_proc_inv" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F97316;strokeWidth=1.5;endArrow=classic;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="step_proc_match">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_proc_match_comp" edge="1" parent="card_proc" source="step_proc_match" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#10B981;strokeWidth=2;endArrow=classic;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.85;entryY=0;entryDx=0;entryDy=0;fontSize=10;fontColor=#047857;" target="step_proc_completed" value="&lt;b style=&quot;color:#047857;&quot;&gt;[MATCH VALID]&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="doc_proc" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFFFF;strokeColor=#F97316;strokeWidth=1.5;size=18;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 12px; color: #C2410C;&quot;&gt;OUTPUT DOKUMEN:&lt;br&gt;Pilar 3: Berkas 3-Way Match&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10.5px; color: #334155; line-height: 1.5;&quot;&gt;&amp;bull; Surat Pesanan (PO Pengadaan)&lt;br&gt;&amp;bull; BASTO Lolos Uji QC &amp;amp; SM&lt;br&gt;&amp;bull; Tagihan Sah Rekanan Vendor&lt;br&gt;&lt;b style=&quot;color: #059669;&quot;&gt;Status PO: COMPLETED&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="205" width="260" x="1180" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_1_to_2" edge="1" parent="1" source="step_dmo_submit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0284C7;strokeWidth=2.5;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.15;entryY=0;entryDx=0;entryDy=0;fontSize=10.5;" target="step_qc_inspect" value="&lt;b style=&quot;background-color:#EFF6FF; color:#1D4ED8; padding:2px;&quot;&gt;1. Ajukan Berkas BASTO ke Antrean Inspeksi QC&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1015" y="350" />
+              <mxPoint x="405" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow_2_to_3" edge="1" parent="1" source="step_qc_pass" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#10B981;strokeWidth=2.5;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.15;entryY=0;entryDx=0;entryDy=0;fontSize=10.5;" target="step_sm_open" value="&lt;b style=&quot;background-color:#ECFDF5; color:#047857; padding:2px;&quot;&gt;2. QC-PASS Terbit &amp;rarr; Gatekeeper Terbuka (Siap Review Service Manager)&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="615" />
+              <mxPoint x="405" y="615" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow_3_to_4" edge="1" parent="1" source="step_sm_approved" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#EA580C;strokeWidth=2.5;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=10.5;entryX=0.157;entryY=-0.004;entryDx=0;entryDy=0;entryPerimeter=0;" target="step_proc_po" value="&lt;b style=&quot;background-color:#FFF7ED; color:#C2410C; padding:2px;&quot;&gt;3. BASTO Approved &amp;rarr; Dilimpahkan ke Procurement untuk 3-Way Match&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="880" />
+              <mxPoint x="410" y="880" />
+              <mxPoint x="410" y="944.8" />
+            </Array>
+            <mxPoint x="410" y="940" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow_loop_qc" edge="1" parent="1" source="dec_qc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#EF4444;strokeWidth=2;dashed=1;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="step_dmo_reupload">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="442" />
+              <mxPoint x="1140" y="285" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_loop_qc" connectable="0" parent="flow_loop_qc" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9.5;fontColor=#DC2626;" value="&lt;b style=&quot;background-color: rgb(254, 242, 242); color: rgb(220, 38, 38); padding: 2px;&quot;&gt;[TIDAK] Catatan Temuan&amp;nbsp;&lt;/b&gt;&lt;div&gt;&lt;b style=&quot;background-color: rgb(254, 242, 242); color: rgb(220, 38, 38); padding: 2px;&quot;&gt;Mutu QC (Revisi)&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint x="-57" y="-78" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow_loop_sm" edge="1" parent="1" source="dec_sm" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B91C1C;strokeWidth=2;dashed=1;endArrow=block;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="step_dmo_reupload">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="885.02" y="760.02" />
+              <mxPoint x="340" y="760.02" />
+              <mxPoint x="340" y="285.49" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_loop_sm" connectable="0" parent="flow_loop_sm" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9.5;fontColor=#B91C1C;" value="&lt;b style=&quot;background-color:#FEF2F2; color:#B91C1C; padding:2px;&quot;&gt;[TOLAK] Alasan Penolakan Service Manager&lt;/b&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.3" as="geometry">
+            <mxPoint y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="admin_bar" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F172A;strokeColor=#0284C7;strokeWidth=1.5;align=left;spacingLeft=15;" value="&lt;b style=&quot;font-size: 13px; color: #38BDF8;&quot;&gt;PERAN ADMINISTRATOR (TATA KELOLA SISTEM, PENGAWASAN 3 PILAR &amp;amp; AUDIT KEAMANAN RBAC)&lt;/b&gt;&lt;br&gt;&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellpadding=&quot;6&quot; style=&quot;color:#E2E8F0; font-size:11px; margin-top:4px;&quot;&gt;&lt;tr&gt;&lt;td width=&quot;25%&quot;&gt;&lt;b style=&quot;color:#38BDF8;&quot;&gt;1. Manajemen Akun RBAC:&lt;/b&gt;&lt;br&gt;Pemberian hak akses resmi role DMO, QC, SM, dan Procurement.&lt;/td&gt;&lt;td width=&quot;25%&quot;&gt;&lt;b style=&quot;color:#38BDF8;&quot;&gt;2. Mode Impersonasi Sesi:&lt;/b&gt;&lt;br&gt;Audit &amp;amp; supervisi langsung sebagai role user tanpa meminta password.&lt;/td&gt;&lt;td width=&quot;25%&quot;&gt;&lt;b style=&quot;color:#38BDF8;&quot;&gt;3. Period Locking (Kunci Periode):&lt;/b&gt;&lt;br&gt;Mengunci data transaksi bulanan/semester agar tidak bisa dimanipulasi.&lt;/td&gt;&lt;td width=&quot;25%&quot;&gt;&lt;b style=&quot;color:#38BDF8;&quot;&gt;4. Audit Log &amp;amp; Standby Kiosk:&lt;/b&gt;&lt;br&gt;Merekam jejak audit serta display TV Command Center real-time.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="95" width="1380" x="60" y="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;strokeWidth=1.5;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;fontFamily=Helvetica;shadow=1;" value="&lt;b&gt;LEGENDA NOTASI &amp;amp; TIGA PILAR MONITORING SISTEM TERBARU:&lt;/b&gt;&lt;br&gt;&lt;table border=&quot;0&quot; style=&quot;font-size:10.5px; color:#334155; line-height:1.4;&quot;&gt;&lt;tr&gt;&lt;td width=&quot;160&quot;&gt;&lt;b style=&quot;color:#0D9488;&quot;&gt;&amp;bull; Pilar 1: BASTO Workflow&lt;/b&gt;&lt;/td&gt;&lt;td&gt;: Inisiasi DMO &amp;rarr; Uji Mutu QC (Kode QC-PASS) &amp;rarr; Persetujuan Akhir Service Manager&lt;/td&gt;&lt;td width=&quot;160&quot;&gt;&lt;b style=&quot;color:#059669;&quot;&gt;&amp;bull; Pilar 2: Cost Kontrak&lt;/b&gt;&lt;/td&gt;&lt;td&gt;: Pemantauan Pagu Anggaran vs Realisasi Biaya Proyek &amp;amp; Prognosa Bulanan&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b style=&quot;color:#EA580C;&quot;&gt;&amp;bull; Pilar 3: Invoice Vendor&lt;/b&gt;&lt;/td&gt;&lt;td&gt;: Verifikasi 3-Way Match Tagihan Rekanan Pengadaan (Purchase Order + BASTO + Invoice)&lt;/td&gt;&lt;td&gt;&lt;b style=&quot;color:#DC2626;&quot;&gt;&amp;bull; Panah Putus Merah&lt;/b&gt;&lt;/td&gt;&lt;td&gt;: Jalur Pengembalian Berkas Revisi Mutu QC / Penolakan Manajerial SM&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="75" width="1380" x="60" y="1245" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Simulasi Alur Proses Proyek PGN — Tampilan Riil Sistem</title>
+    
+    <!-- Real Website Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 & Icons (Real Website Framework) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary:        #0F172A;
+            --primary-light:  #1E293B;
+            --primary-dark:   #020617;
+            --accent:         #3B82F6;
+            --accent-hover:   #2563EB;
+            --accent-glow:    rgba(59, 130, 246, 0.15);
+            --success:        #10B981;
+            --warning:        #F59E0B;
+            --danger:         #EF4444;
+            --sidebar-width:  260px;
+            --topbar-height:  68px;
+            --body-bg:        #F8FAFC;
+            --card-bg:        #FFFFFF;
+            --border-color:   #E2E8F0;
+            --text-primary:   #0F172A;
+            --text-secondary: #475569;
+            --text-muted:     #94A3B8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b1120;
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 16px;
+            overflow-x: hidden;
+        }
+
+        /* Outer Presenter Frame */
+        .presenter-viewport {
+            width: 100%;
+            max-width: 1440px;
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            aspect-ratio: 16 / 9.8;
+            min-height: 840px;
+        }
+
+        /* Top Presentation Callout Banner (Floating Over Header) */
+        .callout-banner {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            border-bottom: 2px solid #38BDF8;
+            color: #ffffff;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1060;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            flex-shrink: 0;
+        }
+
+        .callout-role-badge {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .role-dmo { background: #0284c7; color: #fff; }
+        .role-proc { background: #8b5cf6; color: #fff; }
+        .role-cost { background: #f59e0b; color: #fff; }
+        .role-qc { background: #10b981; color: #fff; }
+        .role-sm { background: #059669; color: #fff; }
+        .role-exec { background: #475569; color: #fff; }
+
+        .callout-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+        }
+
+        .callout-desc {
+            font-size: 0.82rem;
+            color: #CBD5E1;
+            margin: 0;
+            max-width: 780px;
+            line-height: 1.4;
+        }
+
+        /* Real Web Layout Inside Frame */
+        .app-window {
+            flex: 1;
+            display: flex;
+            position: relative;
+            background: #F8FAFC;
+            overflow: hidden;
+        }
+
+        /* ===== AUTHENTIC REAL SIDEBAR ===== */
+        .real-sidebar {
+            width: var(--sidebar-width);
+            background: radial-gradient(circle at 10% 20%, #1E293B 0%, #0F172A 100%);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            z-index: 10;
+            user-select: none;
+        }
+
+        .sidebar-brand {
+            padding: 16px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+            background: rgba(15, 23, 42, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon-wrapper {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+        }
+
+        .brand-name {
+            color: white;
+            font-weight: 800;
+            font-size: 0.95rem;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        .brand-subtitle {
+            color: #38BDF8;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 1px;
+        }
+
+        .sidebar-user {
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10B981;
+            box-shadow: 0 0 8px #10B981;
+        }
+
+        .user-info-name {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 1.2;
+        }
+
+        .user-info-role {
+            font-size: 0.68rem;
+            color: #94A3B8;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .sidebar-nav {
+            padding: 12px 10px;
+            flex: 1;
+            overflow-y: hidden;
+        }
+
+        .nav-section-title {
+            padding: 10px 10px 4px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #64748B;
+        }
+
+        .sidebar-nav .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            color: #94A3B8;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 3px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav .nav-link i {
+            font-size: 1rem;
+            width: 18px;
+            text-align: center;
+        }
+
+        .sidebar-nav .nav-link.active {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60A5FA;
+            font-weight: 700;
+            border-left: 3px solid #3B82F6;
+        }
+
+        .sidebar-footer {
+            padding: 12px 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.68rem;
+            color: #64748B;
+        }
+
+        /* ===== AUTHENTIC REAL TOPBAR ===== */
+        .real-topbar {
+            height: var(--topbar-height);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 5;
+            flex-shrink: 0;
+        }
+
+        .topbar-breadcrumb-title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar-breadcrumb {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .topbar-page-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .search-trigger-btn {
+            background: #F1F5F9;
+            border: 1px solid #E2E8F0;
+            color: #64748B;
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .notif-bell-btn {
+            position: relative;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: #F1F5F9;
+            color: #475569;
+            border: 1px solid #E2E8F0;
+        }
+
+        .notif-pulse {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 8px;
+            height: 8px;
+            background: #EF4444;
+            border-radius: 50%;
+            border: 1.5px solid #FFFFFF;
+        }
+
+        .user-avatar-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1E3A8A 0%, #0284C7 100%);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.2);
+        }
+
+        /* ===== REAL PAGE CONTENT CONTAINER ===== */
+        .real-content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            background: #F8FAFC;
+        }
+
+        .scene-container {
+            position: absolute;
+            inset: 0;
+            padding: 20px 24px 80px 24px;
+            overflow-y: auto;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(12px);
+        }
+
+        .scene-container.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* Real Form & Table Styles */
+        .real-card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            margin-bottom: 16px;
+        }
+
+        .form-label-custom {
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: #334155;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 4px;
+        }
+
+        .form-control-custom {
+            font-size: 0.84rem;
+            border: 1px solid #CBD5E1;
+            border-radius: 8px;
+            padding: 8px 12px;
+            background: #ffffff;
+            color: #0F172A;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .form-control-custom.typing-active {
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+            background: #EFF6FF;
+        }
+
+        /* Badges */
+        .badge-status-paid        { background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0; }
+        .badge-status-unpaid      { background: #FEF2F2; color: #991B1B; border: 1px solid #FCA5A5; }
+        .badge-status-pending     { background: #FFFBEB; color: #92400E; border: 1px solid #FDE68A; }
+        .badge-status-proses      { background: #EFF6FF; color: #1E40AF; border: 1px solid #BFDBFE; font-weight: 700; }
+        .badge-status-verified    { background: #ECFDF5; color: #065F46; border: 1px solid #6EE7B7; font-weight: 800; }
+
+        /* Simulated Modal Window */
+        .simulated-modal {
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+        }
+
+        .simulated-modal-header {
+            background: #F8FAFC;
+            padding: 14px 20px;
+            border-bottom: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Floating Simulated Cursor */
+        #simulatedCursor {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            pointer-events: none;
+            z-index: 2000;
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35));
+        }
+
+        .cursor-ripple {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.5);
+            transform: scale(0);
+            pointer-events: none;
+        }
+
+        .cursor-ripple.click-pulse {
+            animation: pulseRipple 0.5s ease-out forwards;
+        }
+
+        @keyframes pulseRipple {
+            0% { transform: scale(0.2); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        /* Floating Video Controller Bar (Bottom) */
+        .video-controller-strip {
+            position: absolute;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 40px;
+            padding: 8px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            z-index: 1070;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            max-width: 95%;
+        }
+
+        .ctrl-btn {
+            background: none;
+            border: none;
+            color: #94A3B8;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .ctrl-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .ctrl-btn.play-btn {
+            background: #0284C7;
+            color: #ffffff;
+            width: 38px;
+            height: 38px;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+        }
+
+        .ctrl-btn.play-btn:hover {
+            background: #0369A1;
+            transform: scale(1.06);
+        }
+
+        .timeline-container {
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .timeline-track {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #38BDF8, #3B82F6);
+            width: 0%;
+            border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+
+        .timeline-time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.68rem;
+            color: #94A3B8;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .scene-pill-group {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .scene-pill {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #CBD5E1;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .scene-pill:hover, .scene-pill.active {
+            background: #0284C7;
+            color: #ffffff;
+            border-color: #38BDF8;
+        }
+
+        .speed-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            padding: 3px 6px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* Print Scene Layout (Authentic Kop PGN) */
+        .authentic-print-sheet {
+            background: #ffffff;
+            border: 1px solid #CBD5E1;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            padding: 24px 30px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRESENTER VIEWPORT -->
+    <div class="presenter-viewport" id="presenterViewport">
+        
+        <!-- TOP CALLOUT BANNER (EXPLANATORY GUIDE) -->
+        <div class="callout-banner">
+            <div class="d-flex align-items-center gap-3">
+                <span class="callout-role-badge role-dmo" id="bannerRoleBadge">
+                    <i class="bi bi-person-badge-fill"></i> DMO STAFF
+                </span>
+                <div>
+                    <h6 class="callout-title" id="bannerTitle">Babak 1: Inisiasi Proyek Baru di Master Data</h6>
+                    <p class="callout-desc" id="bannerDesc">
+                        DMO Staff mendaftarkan Master Proyek baru untuk mengunci batas atas anggaran (budget ceiling) resmi sebelum ada SPK atau penagihan.
+                    </p>
+                </div>
+            </div>
+            <div class="text-end d-none d-md-block">
+                <span class="badge bg-primary bg-opacity-25 text-info border border-info border-opacity-25 px-2 py-1" id="bannerStepCount" style="font-size: 0.75rem;">
+                    LANGKAH 1 DARI 8
+                </span>
+            </div>
+        </div>
+
+        <!-- REAL APPLICATION WINDOW -->
+        <div class="app-window">
+            
+            <!-- 1. AUTHENTIC REAL SIDEBAR -->
+            <aside class="real-sidebar">
+                <div class="sidebar-brand" style="gap: 12px; align-items: center;">
+                    <div class="d-flex flex-column align-items-center" style="flex-shrink: 0;">
+                        <div class="brand-icon-wrapper" style="width: auto; height: 36px; padding: 2px 8px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px;">
+                            <img src="/assets/images/logo-pgncom-white.png" alt="PGNCOM Logo" style="height: 22px; width: auto; object-fit: contain;">
+                        </div>
+                        <div class="brand-subtitle text-center" style="font-size: 0.58rem; color: #38BDF8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 4px; white-space: nowrap;">PGNCOM Monitoring</div>
+                    </div>
+                    <div>
+                        <div class="brand-name" style="font-size: 0.98rem; font-weight: 800; color: #ffffff; letter-spacing: -0.01em; line-height: 1.25;">Input Realisasi</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-user">
+                    <div class="user-dot"></div>
+                    <div>
+                        <div class="user-info-name" id="sidebarUserName">Masyita Mustika</div>
+                        <div class="user-info-role" id="sidebarUserRole">DMO STAFF OPERASIONAL</div>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <div class="nav-section-title">Ringkasan Eksekutif</div>
+                    <a href="javascript:void(0)" class="nav-link" id="navDashboard">
+                        <i class="bi bi-speedometer2"></i>
+                        <span>Dashboard Realisasi</span>
+                    </a>
+                    <a href="javascript:void(0)" class="nav-link" id="navStandby">
+                        <i class="bi bi-tv"></i>
+                        <span>Standby Command Center</span>
+                    </a>
+
+                    <div class="nav-section-title mt-2">Tiga Pilar Monitoring</div>
+                    <a href="javascript:void(0)" class="nav-link" id="navBasto">
+                        <i class="bi bi-clipboard2-check"></i>
+                        <span>Monitoring BASTO</span>
+                    </a>
+                    <a href="javascript:void(0)" class="nav-link" id="navCostKontrak">
+                        <i class="bi bi-pie-chart-fill"></i>
+                        <span>Cost Kontrak</span>
+                    </a>
+                    <a href="javascript:void(0)" class="nav-link" id="navInvoiceVendor">
+                        <i class="bi bi-receipt-cutoff"></i>
+                        <span>Invoice Vendor</span>
+                    </a>
+
+                    <div class="nav-section-title mt-2">Pengadaan & Master Data</div>
+                    <a href="javascript:void(0)" class="nav-link" id="navProcurement">
+                        <i class="bi bi-file-earmark-ruled-fill"></i>
+                        <span>PO & SPK Pengadaan</span>
+                    </a>
+                    <a href="javascript:void(0)" class="nav-link active" id="navMasterData">
+                        <i class="bi bi-database-fill-gear"></i>
+                        <span>Master Data Proyek</span>
+                    </a>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <span>PGN Solution v2.4</span>
+                    <span class="text-success"><i class="bi bi-shield-check"></i> Secured</span>
+                </div>
+            </aside>
+
+            <!-- 2. MAIN CONTENT AREA & REAL TOPBAR -->
+            <main class="real-content-area">
+                
+                <!-- TOPBAR -->
+                <header class="real-topbar">
+                    <div class="topbar-breadcrumb-title">
+                        <div class="topbar-breadcrumb" id="topbarBreadcrumb">
+                            <span>Home</span> <i class="bi bi-chevron-right" style="font-size: 0.65rem;"></i>
+                            <span>Admin</span> <i class="bi bi-chevron-right" style="font-size: 0.65rem;"></i>
+                            <span class="text-dark fw-bold" id="topbarCurrentNav">Master Data</span>
+                        </div>
+                        <h5 class="topbar-page-title" id="topbarPageTitle">Pusat Kelola Master Data & Pagu</h5>
+                    </div>
+
+                    <div class="topbar-right">
+                        <div class="search-trigger-btn">
+                            <i class="bi bi-search"></i>
+                            <span>Cari Proyek, PO, BASTO... (Ctrl+K)</span>
+                        </div>
+                        <div class="notif-bell-btn">
+                            <i class="bi bi-bell-fill"></i>
+                            <span class="notif-pulse"></span>
+                        </div>
+                        <div class="user-avatar-circle" id="topbarAvatar">
+                            MM
+                        </div>
+                    </div>
+                </header>
+
+                <!-- SCENE CONTAINER 1: MASTER DATA PROYEK (INISIASI) -->
+                <div class="scene-container active" id="scene1">
+                    <!-- Banner -->
+                    <div class="card border-0 shadow-sm rounded-3 mb-3 text-white" style="background: linear-gradient(135deg, #0A192F 0%, #1E3A8A 100%);">
+                        <div class="card-body p-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="badge bg-white bg-opacity-15 text-warning mb-1" style="font-size: 0.7rem;">
+                                        <i class="bi bi-diagram-3-fill"></i> Standardisasi Data Operasional
+                                    </span>
+                                    <h5 class="fw-bold mb-0">Pusat Kelola Master Proyek & Pagu</h5>
+                                    <small class="text-white-50">Penguncian pagu kontrak resmi sebagai acuan serapan realisasi dan prognosa pengadaan.</small>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-primary fw-bold shadow-sm" id="btnOpenModalProject">
+                                    <i class="bi bi-plus-lg me-1"></i> Daftarkan Proyek Baru
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simulated Modal Input Proyek Baru -->
+                    <div class="simulated-modal mb-3" id="modalProjectBox" style="max-width: 820px; margin: 0 auto;">
+                        <div class="simulated-modal-header">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="bg-primary text-white rounded-2 d-flex align-items-center justify-content-center" style="width: 30px; height: 30px; font-size: 0.9rem;">
+                                    <i class="bi bi-briefcase-fill"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold text-dark" style="font-size: 0.88rem;">Daftarkan Master Proyek & Pagu Baru</div>
+                                    <div class="text-muted" style="font-size: 0.7rem;">Pagu ini menjadi batas plafon serapan realisasi dan kontrol anggaran</div>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-secondary border">Formulir DMO</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="row g-2 mb-2">
+                                <div class="col-md-5">
+                                    <label class="form-label-custom">Project ID / Kode Proyek <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control-custom font-monospace fw-bold text-primary" id="inProjectId" value="" placeholder="Contoh: PRJ-2026-PGN-001">
+                                </div>
+                                <div class="col-md-7">
+                                    <label class="form-label-custom">Nama Lengkap Proyek <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control-custom fw-bold" id="inProjectName" value="" placeholder="Nama Proyek Sesuai Kontrak Induk">
+                                </div>
+                            </div>
+
+                            <div class="row g-2 mb-2">
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Nilai Pagu Anggaran (Kontrak) <span class="text-danger">*</span></label>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text bg-light fw-bold">Rp</span>
+                                        <input type="text" class="form-control font-monospace fw-bold fs-6" id="inProjectPagu" value="" placeholder="2.500.000.000">
+                                    </div>
+                                    <div class="text-primary fw-bold mt-1" id="paguTerbilang" style="font-size: 0.72rem;">—</div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label-custom">Tahun Anggaran</label>
+                                    <input type="text" class="form-control-custom font-monospace" id="inProjectYear" value="2026" readonly>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label-custom">Nomor Kontrak / PO</label>
+                                    <input type="text" class="form-control-custom" id="inProjectPO" value="PO/PGN/2026/099">
+                                </div>
+                            </div>
+
+                            <div class="row g-2 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Service Manager / PIC</label>
+                                    <select class="form-select form-select-sm" id="inProjectSM">
+                                        <option value="GILANG" selected>GILANG (OSM Service Manager)</option>
+                                        <option value="JIHAD">JIHAD</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Client / Pemilik Pekerjaan</label>
+                                    <input type="text" class="form-control-custom" id="inProjectClient" value="PT PGN Tbk (Strategic Customer)">
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-end gap-2 pt-2 border-top">
+                                <button type="button" class="btn btn-sm btn-light border px-3">Batal</button>
+                                <button type="button" class="btn btn-sm btn-primary fw-bold px-4" id="btnSubmitProject">
+                                    <i class="bi bi-save-fill me-1"></i> Simpan Master Proyek
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE CONTAINER 2: PROCUREMENT PO & PROGNOSA -->
+                <div class="scene-container" id="scene2">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold mb-0 text-dark">
+                                <i class="bi bi-file-earmark-ruled-fill text-primary me-2"></i>PO / SPK Pengadaan Barang & Jasa
+                            </h5>
+                            <small class="text-muted">Penerbitan surat pesanan dan komitmen alokasi belanja prognosa terhadap pagu proyek.</small>
+                        </div>
+                        <button class="btn btn-sm btn-primary fw-bold" id="btnOpenModalPO">
+                            <i class="bi bi-plus-circle me-1"></i> Terbitkan PO Baru
+                        </button>
+                    </div>
+
+                    <!-- Simulated Modal Terbitkan PO -->
+                    <div class="simulated-modal" id="modalPOBox" style="max-width: 820px; margin: 0 auto;">
+                        <div class="simulated-modal-header">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="bg-primary text-white rounded-2 d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;">
+                                    <i class="bi bi-cart-check-fill"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold text-dark" style="font-size: 0.88rem;">Penerbitan Surat Pesanan (PO / SPK) Baru</div>
+                                    <div class="text-muted" style="font-size: 0.7rem;">Komitmen biaya pengadaan langsung dipetakan ke prognosa serapan anggaran</div>
+                                </div>
+                            </div>
+                            <span class="badge bg-info bg-opacity-10 text-primary border border-primary border-opacity-25">Procurement Hub</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="row g-2 mb-2">
+                                <div class="col-md-5">
+                                    <label class="form-label-custom">Nomor PO / SPK <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control-custom font-monospace fw-bold text-primary" id="inPoNumber" placeholder="Contoh: PO/2026/PGN-SCM/014">
+                                </div>
+                                <div class="col-md-7">
+                                    <label class="form-label-custom">Judul Pengadaan / Item Pekerjaan <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control-custom fw-bold" id="inPoTitle" placeholder="Pengadaan Pipa High-Pressure & Valve Fabrikasi">
+                                </div>
+                            </div>
+
+                            <div class="row g-2 mb-2">
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Pilih Rekanan Vendor <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control-custom fw-bold" id="inPoVendor" value="PT Mitra Gas Fabrikasi (Terverifikasi)">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Klausul Term of Payment (TOP)</label>
+                                    <select class="form-select form-select-sm" id="inPoTop">
+                                        <option value="30">30 Hari Kalender (Standard PGN)</option>
+                                        <option value="45">45 Hari Kalender</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row g-2 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Nilai Komitmen PO (Estimasi Prognosa) <span class="text-danger">*</span></label>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text bg-light fw-bold">Rp</span>
+                                        <input type="text" class="form-control font-monospace fw-bold fs-6 text-primary" id="inPoValue" placeholder="850.000.000">
+                                    </div>
+                                    <small class="text-success fw-bold mt-1 d-block" id="poPaguCheck">
+                                        <i class="bi bi-check-circle-fill"></i> Aman: Di bawah pagu kontrak (Rp 2,5 Miliar)
+                                    </small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Terkait Project ID</label>
+                                    <input type="text" class="form-control-custom font-monospace" value="PRJ-2026-PGN-001 - Operasi & Pemeliharaan Gas" readonly>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-end gap-2 pt-2 border-top">
+                                <button type="button" class="btn btn-sm btn-light border px-3">Batal</button>
+                                <button type="button" class="btn btn-sm btn-primary fw-bold px-4" id="btnSubmitPO">
+                                    <i class="bi bi-lock-fill me-1"></i> Terbitkan PO & Kunci Prognosa
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE CONTAINER 3: MONITORING INVOICE VENDOR & AGING -->
+                <div class="scene-container" id="scene3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold mb-0 text-dark">
+                                <i class="bi bi-receipt-cutoff text-primary me-2"></i>Monitoring Invoice Vendor & Realisasi Tagihan
+                            </h5>
+                            <small class="text-muted">Early Warning System (EWS) mendeteksi usia penagihan agar tidak melampaui batas kritis 90 hari.</small>
+                        </div>
+                        <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2.5 py-1.5">
+                            <i class="bi bi-shield-check"></i> EWS Aging Active
+                        </span>
+                    </div>
+
+                    <!-- Aging Filter Alert Card -->
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-3">
+                            <div class="p-2.5 bg-white border rounded-3 text-center shadow-sm">
+                                <div class="text-muted" style="font-size: 0.68rem; font-weight: 700;">AGING &lt; 30 HARI</div>
+                                <div class="fs-5 fw-bold text-success font-monospace">18 Invoice</div>
+                                <div class="badge bg-success bg-opacity-10 text-success" style="font-size: 0.65rem;">Aman Terkendali</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-2.5 bg-white border rounded-3 text-center shadow-sm">
+                                <div class="text-muted" style="font-size: 0.68rem; font-weight: 700;">AGING 30 - 60 HARI</div>
+                                <div class="fs-5 fw-bold text-primary font-monospace">6 Invoice</div>
+                                <div class="badge bg-primary bg-opacity-10 text-primary" style="font-size: 0.65rem;">Jatuh Tempo Normal</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-2.5 bg-white border rounded-3 text-center shadow-sm">
+                                <div class="text-muted" style="font-size: 0.68rem; font-weight: 700;">AGING 61 - 90 HARI</div>
+                                <div class="fs-5 fw-bold text-warning font-monospace">2 Invoice</div>
+                                <div class="badge bg-warning bg-opacity-10 text-warning" style="font-size: 0.65rem;">Perlu Perhatian</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-2.5 bg-white border rounded-3 text-center shadow-sm">
+                                <div class="text-muted" style="font-size: 0.68rem; font-weight: 700;">AGING &gt; 90 HARI</div>
+                                <div class="fs-5 fw-bold text-danger font-monospace">0 Invoice</div>
+                                <div class="badge bg-danger bg-opacity-10 text-danger" style="font-size: 0.65rem;">Nol Macet (Zero Overdue)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Real Data Table -->
+                    <div class="real-card overflow-hidden">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" style="font-size: 0.78rem;">
+                                <thead class="table-light">
+                                    <tr class="text-uppercase text-secondary" style="font-size: 0.7rem; letter-spacing: 0.04em;">
+                                        <th>Project ID</th>
+                                        <th>No. Invoice</th>
+                                        <th>Vendor</th>
+                                        <th>Nilai Tagihan</th>
+                                        <th>Tgl Jatuh Tempo</th>
+                                        <th>Status Pembayaran</th>
+                                        <th>Status Aging</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-primary table-opacity-10" id="invoiceRowTarget">
+                                        <td class="font-monospace fw-bold text-primary">PRJ-2026-PGN-001</td>
+                                        <td class="font-monospace fw-bold" id="txtNoInvoice">INV-2026-0442</td>
+                                        <td>PT Mitra Gas Fabrikasi</td>
+                                        <td class="font-monospace fw-bold text-dark" id="txtNilaiInvoice">Rp 820.000.000</td>
+                                        <td>28 Okt 2026</td>
+                                        <td>
+                                            <span class="badge badge-status-proses" id="badgeInvoiceStatus">
+                                                <i class="bi bi-hourglass-split me-1"></i> PROSES
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25" id="badgeAging">
+                                                <i class="bi bi-check-circle-fill me-1"></i> 15 Hari (Aman &lt; 90 Hari)
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-monospace text-muted">PS-2025-012</td>
+                                        <td class="font-monospace">INV-2025-0988</td>
+                                        <td>PT Rekayasa Industri</td>
+                                        <td class="font-monospace">Rp 340.000.000</td>
+                                        <td>15 Sep 2026</td>
+                                        <td><span class="badge badge-status-paid">LUNAS</span></td>
+                                        <td><span class="badge bg-light text-muted">Selesai</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-monospace text-muted">MS-2025-044</td>
+                                        <td class="font-monospace">INV-2025-1021</td>
+                                        <td>PT Surveyor Indonesia</td>
+                                        <td class="font-monospace">Rp 125.000.000</td>
+                                        <td>02 Nov 2026</td>
+                                        <td><span class="badge badge-status-pending">VERIFIKASI</span></td>
+                                        <td><span class="badge bg-success bg-opacity-10 text-success">8 Hari (Aman)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE CONTAINER 4: MONITORING COST KONTRAK -->
+                <div class="scene-container" id="scene4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold mb-0 text-dark">
+                                <i class="bi bi-pie-chart-fill text-primary me-2"></i>Monitoring Cost Kontrak (Cost vs Realisasi)
+                            </h5>
+                            <small class="text-muted">Analisis persentase serapan anggaran dan status kesehatan portofolio secara real-time.</small>
+                        </div>
+                        <span class="badge bg-success text-white px-2.5 py-1.5 shadow-sm">
+                            <i class="bi bi-check2-circle me-1"></i> Status Anggaran: SEHAT
+                        </span>
+                    </div>
+
+                    <!-- 3 Real KPI Health Cards -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4">
+                            <div class="p-3 bg-white border border-success border-opacity-50 rounded-3 shadow-sm position-relative overflow-hidden">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="text-success fw-bold small text-uppercase">🟢 Kategori Sehat</div>
+                                        <div class="fs-4 fw-bold text-dark font-monospace mt-1">28 Proyek</div>
+                                        <div class="text-muted" style="font-size: 0.72rem;">Serapan &lt; 75% dari Nilai Pagu</div>
+                                    </div>
+                                    <div class="bg-success bg-opacity-10 p-2.5 rounded-circle text-success fs-4">
+                                        <i class="bi bi-shield-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 bg-white border border-warning border-opacity-50 rounded-3 shadow-sm position-relative overflow-hidden">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="text-warning fw-bold small text-uppercase">🟡 Kategori Waspada</div>
+                                        <div class="fs-4 fw-bold text-dark font-monospace mt-1">4 Proyek</div>
+                                        <div class="text-muted" style="font-size: 0.72rem;">Serapan 75% - 90% dari Pagu</div>
+                                    </div>
+                                    <div class="bg-warning bg-opacity-10 p-2.5 rounded-circle text-warning fs-4">
+                                        <i class="bi bi-exclamation-triangle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 bg-white border border-danger border-opacity-50 rounded-3 shadow-sm position-relative overflow-hidden">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="text-danger fw-bold small text-uppercase">🔴 Kategori Kritis</div>
+                                        <div class="fs-4 fw-bold text-dark font-monospace mt-1">0 Proyek</div>
+                                        <div class="text-muted" style="font-size: 0.72rem;">Serapan &gt; 90% (Zero Overbudget)</div>
+                                    </div>
+                                    <div class="bg-danger bg-opacity-10 p-2.5 rounded-circle text-danger fs-4">
+                                        <i class="bi bi-radioactive"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cost Kontrak Table -->
+                    <div class="real-card p-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6 class="fw-bold mb-0 text-dark">Rasio Serapan Proyek PRJ-2026-PGN-001</h6>
+                            <span class="badge bg-success bg-opacity-15 text-success fw-bold">🟢 STATUS: SEHAT (32.8%)</span>
+                        </div>
+
+                        <div class="row g-2 mb-3 text-center">
+                            <div class="col-md-4">
+                                <div class="p-2 bg-light rounded-2 border">
+                                    <small class="text-muted d-block">NILAI PAGU KONTRAK</small>
+                                    <span class="fw-bold font-monospace fs-6">Rp 2.500.000.000</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-2 bg-light rounded-2 border">
+                                    <small class="text-muted d-block">TOTAL REALISASI BIAYA</small>
+                                    <span class="fw-bold font-monospace fs-6 text-primary" id="costRealisasiTxt">Rp 820.000.000</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-2 bg-light rounded-2 border">
+                                    <small class="text-muted d-block">SISA ANGGARAN TERSEDIA</small>
+                                    <span class="fw-bold font-monospace fs-6 text-success" id="costSisaTxt">Rp 1.680.000.000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar Serapan -->
+                        <div class="mb-1 d-flex justify-content-between small fw-bold">
+                            <span>Tingkat Serapan Anggaran Proyek</span>
+                            <span class="text-primary font-monospace" id="costPercentTxt">32.8%</span>
+                        </div>
+                        <div class="progress mb-2" style="height: 14px; border-radius: 8px; background: #E2E8F0;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" id="costProgressBar" role="progressbar" style="width: 0%; transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);"></div>
+                        </div>
+                        <small class="text-muted" style="font-size: 0.72rem;">
+                            <i class="bi bi-info-circle text-primary me-1"></i> Pagu masih menyisakan 67.2% alokasi anggaran, proyek aman untuk kelanjutan operasional.
+                        </small>
+                    </div>
+                </div>
+
+                <!-- SCENE CONTAINER 5: MONITORING BASTO & UPLOAD -->
+                <div class="scene-container" id="scene5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold mb-0 text-dark">
+                                <i class="bi bi-clipboard2-check text-primary me-2"></i>Monitoring BASTO & Alur Verifikasi Bertingkat
+                            </h5>
+                            <small class="text-muted">Manajemen Berita Acara Serah Terima Operasional dari upload fisik sampai pengesahan SM.</small>
+                        </div>
+                        <button class="btn btn-sm btn-primary fw-bold" id="btnOpenModalBasto">
+                            <i class="bi bi-upload me-1"></i> Buat BASTO (Upload PDF)
+                        </button>
+                    </div>
+
+                    <!-- Workflow Tabs -->
+                    <ul class="nav nav-pills gap-2 mb-3">
+                        <li class="nav-item">
+                            <span class="nav-link py-1.5 px-3 active fw-bold" style="font-size: 0.78rem;">
+                                <i class="bi bi-inbox-fill me-1"></i> Inbox DMO (1 Baru)
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <span class="nav-link py-1.5 px-3 bg-white border text-secondary fw-bold" style="font-size: 0.78rem;">
+                                <i class="bi bi-patch-check me-1"></i> Verifikasi QC (5)
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <span class="nav-link py-1.5 px-3 bg-white border text-secondary fw-bold" style="font-size: 0.78rem;">
+                                <i class="bi bi-person-check-fill me-1"></i> Review SM (2)
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <span class="nav-link py-1.5 px-3 bg-white border text-secondary fw-bold" style="font-size: 0.78rem;">
+                                <i class="bi bi-check-all me-1"></i> Selesai (132)
+                            </span>
+                        </li>
+                    </ul>
+
+                    <!-- Simulated Modal Upload BASTO -->
+                    <div class="simulated-modal" id="modalBastoBox" style="max-width: 820px; margin: 0 auto;">
+                        <div class="simulated-modal-header">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="bg-primary text-white rounded-2 d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;">
+                                    <i class="bi bi-file-earmark-pdf-fill"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold text-dark" style="font-size: 0.88rem;">Buat &amp; Upload Berkas BASTO Baru</div>
+                                    <div class="text-muted" style="font-size: 0.7rem;">Lampirkan berkas fisik bertanda tangan basah untuk diverifikasi QC</div>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-secondary border">Formulir DMO</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="row g-2 mb-2">
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Nomor BASTO Resmi <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control-custom font-monospace fw-bold text-primary" id="inBastoNo" placeholder="004/BASTO/SMO/2026">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Terkait Project ID</label>
+                                    <input type="text" class="form-control-custom font-monospace" value="PRJ-2026-PGN-001" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row g-2 mb-2">
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Nilai BASTO Diajukan <span class="text-danger">*</span></label>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text bg-light fw-bold">Rp</span>
+                                        <input type="text" class="form-control font-monospace fw-bold" id="inBastoNilai" value="820.000.000" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label-custom">Service Manager PIC</label>
+                                    <input type="text" class="form-control-custom" value="GILANG (Service Manager)" readonly>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label-custom">Lampiran Berkas Fisik PDF (Stempel Basah) <span class="text-danger">*</span></label>
+                                <div class="p-3 border border-2 border-dashed rounded-3 text-center bg-light" id="bastoUploadBox">
+                                    <i class="bi bi-file-earmark-pdf text-danger fs-3 d-block mb-1"></i>
+                                    <span class="fw-bold text-dark d-block" id="bastoFileName" style="font-size: 0.82rem;">
+                                        Menunggu lampiran berkas fisik...
+                                    </span>
+                                    <small class="text-muted" style="font-size: 0.7rem;">Format PDF maksimal 10 MB</small>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-end gap-2 pt-2 border-top">
+                                <button type="button" class="btn btn-sm btn-light border px-3">Batal</button>
+                                <button type="button" class="btn btn-sm btn-primary fw-bold px-4" id="btnSubmitBasto">
+                                    <i class="bi bi-send-fill me-1"></i> Ajukan Dokumen ke QC Inspector
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE CONTAINER 6: QC INSPECTION & MUTU -->
+                <div class="scene-container" id="scene6">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold mb-0 text-dark">
+                                <i class="bi bi-patch-check-fill text-success me-2"></i>Verifikasi Mutu & Inspeksi Fisik Lapangan (OSM QC)
+                            </h5>
+                            <small class="text-muted">QC Inspector memeriksa bukti fisik lapangan, kelengkapan BAPP, dan validitas tanda tangan basah.</small>
+                        </div>
+                        <span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-25 px-2.5 py-1.5" id="qcStatusBadge">
+                            <i class="bi bi-hourglass-split me-1"></i> Status: Sedang Diinspeksi
+                        </span>
+                    </div>
+
+                    <!-- Simulated QC Inspection Modal -->
+                    <div class="simulated-modal" id="modalQCBox" style="max-width: 820px; margin: 0 auto;">
+                        <div class="simulated-modal-header" style="background: #F0FDF4; border-bottom-color: #DCFCE7;">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="bg-success text-white rounded-2 d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;">
+                                    <i class="bi bi-shield-fill-check"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold text-dark" style="font-size: 0.88rem;">Lembar Verifikasi Mutu & Checklist QC</div>
+                                    <div class="text-muted" style="font-size: 0.7rem;">Dokumen BASTO: 004/BASTO/SMO/2026 | Nilai: Rp 820.000.000</div>
+                                </div>
+                            </div>
+                            <span class="badge bg-success text-white">Role: OSM QC Inspector</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="p-2.5 bg-light rounded-3 border mb-3">
+                                <div class="row g-2" style="font-size: 0.78rem;">
+                                    <div class="col-6"><strong>Proyek:</strong> PRJ-2026-PGN-001 (Operasi GMS)</div>
+                                    <div class="col-6"><strong>Vendor:</strong> PT Mitra Gas Fabrikasi</div>
+                                    <div class="col-6"><strong>Berkas Terlampir:</strong> <span class="text-primary font-monospace"><i class="bi bi-file-pdf-fill text-danger me-1"></i>BASTO_Fisik_Signed.pdf</span></div>
+                                    <div class="col-6"><strong>Petugas QC:</strong> QC Inspector Lapangan</div>
+                                </div>
+                            </div>
+
+                            <label class="form-label-custom mb-2">4 Butir Checklist Wajib Mutu Lapangan</label>
+                            
+                            <div class="d-flex flex-column gap-2 mb-3">
+                                <div class="p-2 border rounded-2 d-flex align-items-center gap-2 bg-white" id="qcCheck1">
+                                    <i class="bi bi-square text-muted" id="icoQc1"></i>
+                                    <span style="font-size: 0.8rem;">1. Fisik berkas BASTO lengkap, asli, dan bertanda tangan basah rekanan vendor.</span>
+                                </div>
+                                <div class="p-2 border rounded-2 d-flex align-items-center gap-2 bg-white" id="qcCheck2">
+                                    <i class="bi bi-square text-muted" id="icoQc2"></i>
+                                    <span style="font-size: 0.8rem;">2. Berita Acara Pemeriksaan Pekerjaan Lapangan (BAPP) sesuai spesifikasi teknis.</span>
+                                </div>
+                                <div class="p-2 border rounded-2 d-flex align-items-center gap-2 bg-white" id="qcCheck3">
+                                    <i class="bi bi-square text-muted" id="icoQc3"></i>
+                                    <span style="font-size: 0.8rem;">3. Kesesuaian nominal BASTO terhadap serapan SPK dan invoice (Rp 820.000.000).</span>
+                                </div>
+                                <div class="p-2 border rounded-2 d-flex align-items-center gap-2 bg-white" id="qcCheck4">
+                                    <i class="bi bi-square text-muted" id="icoQc4"></i>
+                                    <span style="font-size: 0.8rem;">4. Foto dokumentasi pekerjaan fisik lapangan terlampir valid 100%.</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                <div id="qcPassNotice" class="text-muted small" style="font-size: 0.74rem;">
+                                    Menunggu checklist selesai...
+                                </div>
+                                <button type="button" class="btn btn-sm btn-success fw-bold px-4" id="btnSubmitQC" disabled>
+                                    <i class="bi bi-patch-check-fill me-1"></i> Terbitkan QC Pass
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE CONTAINER 7: SERVICE MANAGER APPROVAL -->
+                <div class="scene-container" id="scene7">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold mb-0 text-dark">
+                                <i class="bi bi-person-check-fill text-primary me-2"></i>Review & Persetujuan Akhir Service Manager (OSM)
+                            </h5>
+                            <small class="text-muted">Service Manager melakukan otorisasi legal atas pekerjaan yang telah lolos verifikasi mutu QC.</small>
+                        </div>
+                        <span class="badge bg-primary text-white px-2.5 py-1.5 shadow-sm">
+                            <i class="bi bi-award-fill me-1"></i> Tahap Akhir Otorisasi
+                        </span>
+                    </div>
+
+                    <!-- SM Executive Review Card -->
+                    <div class="simulated-modal" style="max-width: 820px; margin: 0 auto;">
+                        <div class="simulated-modal-header" style="background: #F8FAFC;">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="bg-primary text-white rounded-2 d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;">
+                                    <i class="bi bi-pen-fill"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold text-dark" style="font-size: 0.88rem;">Persetujuan Resmi Berita Acara (BASTO)</div>
+                                    <div class="text-muted" style="font-size: 0.7rem;">Otorisasi final oleh Service Manager: GILANG</div>
+                                </div>
+                            </div>
+                            <span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-25 font-monospace">
+                                <i class="bi bi-patch-check-fill"></i> QC-PASS-99214 VERIFIED
+                            </span>
+                        </div>
+                        <div class="p-4">
+                            <div class="alert alert-success border-0 shadow-sm d-flex align-items-center gap-3 mb-3 p-3 rounded-3">
+                                <i class="bi bi-check-circle-fill text-success fs-3"></i>
+                                <div>
+                                    <div class="fw-bold text-success">Dokumen Telah Memenuhi Syarat Mutu 100%</div>
+                                    <div class="text-secondary small" style="font-size: 0.76rem;">
+                                        Checklist fisik & administrasi telah divalidasi oleh Tim QC. Berkas sah untuk disetujui Service Manager dan diproses pembayaran.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-2 mb-3">
+                                <div class="col-md-6">
+                                    <div class="p-2.5 bg-light rounded-2 border">
+                                        <small class="text-muted d-block font-monospace">NOMOR BASTO</small>
+                                        <span class="fw-bold text-dark">004/BASTO/SMO/2026</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-2.5 bg-light rounded-2 border">
+                                        <small class="text-muted d-block font-monospace">NILAI YANG DISETUJUI</small>
+                                        <span class="fw-bold text-primary font-monospace fs-6">Rp 820.000.000</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label-custom">Catatan Otorisasi Service Manager</label>
+                                <input type="text" class="form-control-custom fw-bold" value="Pekerjaan selesai 100% sesuai SLA kontrak. Disetujui untuk proses pembayaran." readonly>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="badge bg-light text-dark border font-monospace" id="smApprovalStatus">
+                                        Status: MENUNGGU PERSETUJUAN
+                                    </span>
+                                </div>
+                                <button type="button" class="btn btn-success fw-bold px-4 py-2 shadow-sm" id="btnApproveSM">
+                                    <i class="bi bi-check2-circle me-1"></i> Setujui BASTO (Approve Final)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE CONTAINER 8: CETAK LAPORAN SAH -->
+                <div class="scene-container" id="scene8">
+                    <!-- Real Authentic Redesigned Print Preview -->
+                    <div class="authentic-print-sheet" style="max-width: 900px; margin: 0 auto;">
+                        
+                        <!-- Kop Surat Resmi PT PGAS Telekomunikasi Nusantara (PGNCOM) -->
+                        <div class="d-flex align-items-center justify-content-between pb-3 mb-2 border-bottom border-2 border-dark">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="/assets/images/logo-pgncom.png" alt="PGNCOM Logo" style="height: 42px; width: auto; object-fit: contain;">
+                                <div>
+                                    <h6 class="fw-bold mb-0 text-dark text-uppercase" style="letter-spacing: 0.05em; font-size: 0.95rem;">
+                                        PT PGAS TELEKOMUNIKASI NUSANTARA (PGNCOM)
+                                    </h6>
+                                    <div class="text-secondary" style="font-size: 0.68rem;">
+                                        Enterprise Project Management & Financial Cost Control System
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-light text-dark border px-2 py-1 font-monospace" style="font-size: 0.68rem;">
+                                    FORM-PGNCOM-FIN-2026-REV3
+                                </span>
+                                <div class="text-muted mt-0.5" style="font-size: 0.65rem;">Klasifikasi: Dokumen Sah Perusahaan</div>
+                            </div>
+                        </div>
+
+                        <!-- Judul Laporan -->
+                        <div class="text-center my-2">
+                            <h6 class="fw-bold text-dark text-uppercase mb-1" style="font-size: 0.95rem; letter-spacing: 0.02em;">
+                                LAPORAN RESMI MONITORING REALISASI &amp; REKAPITULASI BASTO
+                            </h6>
+                            <div class="text-muted small" style="font-size: 0.72rem;">
+                                Berdasarkan Filter Terpasang | Tahun Anggaran: 2026 | Service Manager: GILANG | Client: PT PGN Tbk
+                            </div>
+                        </div>
+
+                        <!-- Summary Financial Strip -->
+                        <div class="row g-2 my-2 text-center" style="font-size: 0.74rem;">
+                            <div class="col-3">
+                                <div class="p-1.5 bg-light border rounded">
+                                    <div class="text-muted" style="font-size: 0.65rem;">TOTAL PAGU KONTRAK</div>
+                                    <div class="fw-bold font-monospace">Rp 2.500.000.000</div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-1.5 bg-light border rounded">
+                                    <div class="text-muted" style="font-size: 0.65rem;">TOTAL REALISASI</div>
+                                    <div class="fw-bold font-monospace text-primary">Rp 820.000.000</div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-1.5 bg-light border rounded">
+                                    <div class="text-muted" style="font-size: 0.65rem;">SISA ANGGARAN</div>
+                                    <div class="fw-bold font-monospace text-success">Rp 1.680.000.000</div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-1.5 bg-light border rounded">
+                                    <div class="text-muted" style="font-size: 0.65rem;">STATUS KESEHATAN</div>
+                                    <div class="fw-bold text-success">🟢 SEHAT (32.8%)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Clean Print Table -->
+                        <table class="table table-bordered table-sm mb-3" style="font-size: 0.72rem;">
+                            <thead style="background: #005A9C; color: #fff;">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Project ID</th>
+                                    <th>Nama Proyek</th>
+                                    <th>No. BASTO</th>
+                                    <th>Nilai Realisasi</th>
+                                    <th>Status QC</th>
+                                    <th>Status BASTO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="font-monospace fw-bold">PRJ-2026-PGN-001</td>
+                                    <td>Operasi & Pemeliharaan Gas GMS</td>
+                                    <td class="font-monospace">004/BASTO/SMO/2026</td>
+                                    <td class="font-monospace fw-bold">Rp 820.000.000</td>
+                                    <td class="text-success fw-bold"><i class="bi bi-check-circle-fill"></i> QC PASSED</td>
+                                    <td><span class="badge bg-success text-white">APPROVED (SAH)</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- 3-Column Formal Signature Block -->
+                        <div class="row text-center mt-3 pt-2 border-top" style="font-size: 0.72rem;">
+                            <div class="col-4">
+                                <div class="text-muted mb-4">Disiapkan Oleh (DMO Staff):</div>
+                                <div class="fw-bold text-dark text-decoration-underline">Masyita Mustika</div>
+                                <div class="text-muted" style="font-size: 0.68rem;">Data Management Officer</div>
+                            </div>
+                            <div class="col-4 position-relative">
+                                <div class="text-muted mb-4">Diperiksa Oleh (QC):</div>
+                                <div class="fw-bold text-dark text-decoration-underline">QC Inspector Lapangan</div>
+                                <div class="text-muted" style="font-size: 0.68rem;">OSM Quality Control</div>
+                            </div>
+                            <div class="col-4 position-relative">
+                                <div class="text-muted mb-4">Disetujui Oleh (SM):</div>
+                                <div class="fw-bold text-dark text-decoration-underline">GILANG</div>
+                                <div class="text-muted" style="font-size: 0.68rem;">OSM Service Manager</div>
+                                <!-- Stempel Approved -->
+                                <div class="position-absolute" style="top: 15px; right: 10px; border: 2px solid #059669; color: #059669; padding: 2px 8px; font-weight: 900; font-size: 0.72rem; transform: rotate(-10deg); border-radius: 4px; background: rgba(5, 150, 105, 0.05); letter-spacing: 1px;">
+                                    APPROVED &amp; SAH
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top text-muted" style="font-size: 0.64rem;">
+                            <span>Dokumen ini digenerate otomatis oleh Sistem Input Realisasi PGN Solution pada 16/09/2026.</span>
+                            <span>Halaman 1 dari 1 (Audit Compliant)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FLOATING SIMULATED CURSOR -->
+                <div id="simulatedCursor">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none">
+                        <path d="M4 2L20 10L12.5 12.5L10 20L4 2Z" fill="#1E293B" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="cursor-ripple" id="cursorRipple"></div>
+                </div>
+
+            </main>
+        </div>
+
+        <!-- BOTTOM FLOATING VIDEO CONTROLLER BAR -->
+        <div class="video-controller-strip">
+            <button class="ctrl-btn play-btn" id="btnPlayPause" title="Play/Pause (Spasi)">
+                <i class="bi bi-play-fill" id="playIcon"></i>
+            </button>
+            <button class="ctrl-btn" id="btnRestart" title="Mulai Dari Awal">
+                <i class="bi bi-arrow-counterclockwise"></i>
+            </button>
+
+            <!-- Timeline Scrubber -->
+            <div class="timeline-container">
+                <div class="timeline-track" id="timelineTrack">
+                    <div class="timeline-progress" id="timelineProgress"></div>
+                </div>
+                <div class="timeline-time">
+                    <span id="timeCurrent">00:00</span>
+                    <span id="timeDuration">00:40</span>
+                </div>
+            </div>
+
+            <!-- Scene Quick Selector -->
+            <div class="scene-pill-group">
+                <button class="scene-pill active" data-scene="1">1. Inisiasi</button>
+                <button class="scene-pill" data-scene="2">2. PO/Prognosa</button>
+                <button class="scene-pill" data-scene="3">3. Invoice/Aging</button>
+                <button class="scene-pill" data-scene="4">4. Cost Kontrak</button>
+                <button class="scene-pill" data-scene="5">5. BASTO</button>
+                <button class="scene-pill" data-scene="6">6. QC Pass</button>
+                <button class="scene-pill" data-scene="7">7. SM Approve</button>
+                <button class="scene-pill" data-scene="8">8. Cetak</button>
+            </div>
+
+            <!-- Speed Selector -->
+            <select class="speed-select" id="speedSelect">
+                <option value="0.75">0.75x</option>
+                <option value="1" selected>1.0x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2.0x</option>
+            </select>
+
+            <!-- Fullscreen -->
+            <button class="ctrl-btn" id="btnFullscreen" title="Layar Penuh">
+                <i class="bi bi-fullscreen"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT SIMULASI VIDEO REALISTIS -->
+    <script>
+        // State
+        let isPlaying = false;
+        let currentScene = 1;
+        let playbackSpeed = 1.0;
+        let sceneTimer = null;
+        let animationFrame = null;
+        let sceneStartTime = 0;
+        const totalDuration = 40; // detik
+        const sceneDurations = [5, 5, 5, 5, 5, 5, 5, 5]; // 8 babak @ 5 detik
+
+        // DOM References
+        const btnPlayPause = document.getElementById('btnPlayPause');
+        const playIcon = document.getElementById('playIcon');
+        const btnRestart = document.getElementById('btnRestart');
+        const timelineProgress = document.getElementById('timelineProgress');
+        const timeCurrent = document.getElementById('timeCurrent');
+        const cursor = document.getElementById('simulatedCursor');
+        const cursorRipple = document.getElementById('cursorRipple');
+        const scenePills = document.querySelectorAll('.scene-pill');
+        const speedSelect = document.getElementById('speedSelect');
+        const btnFullscreen = document.getElementById('btnFullscreen');
+        const presenterViewport = document.getElementById('presenterViewport');
+
+        // Banner Elements
+        const bannerRoleBadge = document.getElementById('bannerRoleBadge');
+        const bannerTitle = document.getElementById('bannerTitle');
+        const bannerDesc = document.getElementById('bannerDesc');
+        const bannerStepCount = document.getElementById('bannerStepCount');
+
+        // Sidebar & Topbar References
+        const sidebarUserName = document.getElementById('sidebarUserName');
+        const sidebarUserRole = document.getElementById('sidebarUserRole');
+        const topbarCurrentNav = document.getElementById('topbarCurrentNav');
+        const topbarPageTitle = document.getElementById('topbarPageTitle');
+        const topbarAvatar = document.getElementById('topbarAvatar');
+
+        const navItems = {
+            dashboard: document.getElementById('navDashboard'),
+            basto: document.getElementById('navBasto'),
+            cost: document.getElementById('navCostKontrak'),
+            invoice: document.getElementById('navInvoiceVendor'),
+            proc: document.getElementById('navProcurement'),
+            master: document.getElementById('navMasterData')
+        };
+
+        // Data Babak
+        const scenesConfig = {
+            1: {
+                role: 'DMO STAFF',
+                roleClass: 'role-dmo',
+                userName: 'Masyita Mustika',
+                userRole: 'DMO STAFF OPERASIONAL',
+                avatar: 'MM',
+                currentNav: 'Master Data',
+                pageTitle: 'Pusat Kelola Master Data & Pagu',
+                activeNav: 'master',
+                title: 'Babak 1: Inisiasi Proyek Baru di Master Data',
+                desc: 'DMO Staff mendaftarkan Master Proyek baru untuk mengunci batas atas anggaran (budget ceiling) resmi sebelum ada SPK atau penagihan.',
+                step: 'LANGKAH 1 DARI 8'
+            },
+            2: {
+                role: 'PROCUREMENT',
+                roleClass: 'role-proc',
+                userName: 'Reza Pahlevi',
+                userRole: 'PROCUREMENT OFFICER',
+                avatar: 'RP',
+                currentNav: 'Pengadaan',
+                pageTitle: 'PO / SPK Pengadaan Barang & Jasa',
+                activeNav: 'proc',
+                title: 'Babak 2: Perencanaan PO & Prognosa Biaya',
+                desc: 'Divisi Pengadaan menerbitkan Surat Pesanan (PO/SPK) dan mengunci estimasi belanja pengadaan agar serapan biaya tetap terkontrol sejak awal.',
+                step: 'LANGKAH 2 DARI 8'
+            },
+            3: {
+                role: 'DMO & SCM',
+                roleClass: 'role-cost',
+                userName: 'Masyita Mustika',
+                userRole: 'DMO STAFF OPERASIONAL',
+                avatar: 'MM',
+                currentNav: 'Monitoring',
+                pageTitle: 'Monitoring Invoice Vendor & Realisasi',
+                activeNav: 'invoice',
+                title: 'Babak 3: Realisasi Tagihan & Sensor Aging 90 Hari',
+                desc: 'Pencatatan invoice rekanan vendor yang masuk. Sistem Early Warning System (EWS) otomatis menghitung umur tagihan (Aging) untuk mencegah denda penalti.',
+                step: 'LANGKAH 3 DARI 8'
+            },
+            4: {
+                role: 'COST CONTROL',
+                roleClass: 'role-cost',
+                userName: 'Gilang Ramadhan',
+                userRole: 'COST CONTROL & SM',
+                avatar: 'GR',
+                currentNav: 'Monitoring',
+                pageTitle: 'Monitoring Cost Kontrak (Cost vs Realisasi)',
+                activeNav: 'cost',
+                title: 'Babak 4: Evaluasi Serapan Anggaran & Status Kesehatan',
+                desc: 'Cost Control memantau live pergerakan serapan biaya. Status proyek dihitung otomatis (🟢 Sehat jika serapan < 75% dari pagu) untuk mencegah pembengkakan biaya.',
+                step: 'LANGKAH 4 DARI 8'
+            },
+            5: {
+                role: 'DMO STAFF',
+                roleClass: 'role-dmo',
+                userName: 'Masyita Mustika',
+                userRole: 'DMO STAFF OPERASIONAL',
+                avatar: 'MM',
+                currentNav: 'Monitoring',
+                pageTitle: 'Monitoring BASTO & Berkas Fisik',
+                activeNav: 'basto',
+                title: 'Babak 5: Pengajuan Dokumen BASTO & Upload PDF',
+                desc: 'Setelah pekerjaan fisik selesai, DMO mengunggah dokumen Berita Acara Serah Terima Operasional fisik berstempel basah ke alur verifikasi sistem.',
+                step: 'LANGKAH 5 DARI 8'
+            },
+            6: {
+                role: 'QUALITY CONTROL',
+                roleClass: 'role-qc',
+                userName: 'QC Inspector',
+                userRole: 'OSM QUALITY CONTROL',
+                avatar: 'QC',
+                currentNav: 'Verifikasi Mutu',
+                pageTitle: 'Verifikasi Mutu & Fisik Pekerjaan',
+                activeNav: 'basto',
+                title: 'Babak 6: Verifikasi Mutu & QC Pass Bertingkat',
+                desc: 'Tim QC memeriksa 4 butir kepatuhan teknis lapangan. Jika seluruh syarat terpenuhi, sistem menerbitkan sertifikat kelayakan mutu QC-PASS.',
+                step: 'LANGKAH 6 DARI 8'
+            },
+            7: {
+                role: 'SERVICE MANAGER',
+                roleClass: 'role-sm',
+                userName: 'GILANG',
+                userRole: 'OSM SERVICE MANAGER',
+                avatar: 'GL',
+                currentNav: 'Otorisasi Eksekutif',
+                pageTitle: 'Persetujuan Akhir Service Manager',
+                activeNav: 'basto',
+                title: 'Babak 7: Otorisasi & Persetujuan Final BASTO',
+                desc: 'Service Manager meninjau kelengkapan audit dan otorisasi QC, lalu menekan tombol persetujuan (Approve) sehingga berkas resmi sah dan terkunci.',
+                step: 'LANGKAH 7 DARI 8'
+            },
+            8: {
+                role: 'MANAJEMEN & AUDIT',
+                roleClass: 'role-exec',
+                userName: 'Masyita Mustika',
+                userRole: 'ADMINISTRATOR & REPORTING',
+                avatar: 'PGN',
+                currentNav: 'Laporan Sah',
+                pageTitle: 'Lembar Cetak Laporan Resmi Perusahaan',
+                activeNav: 'cost',
+                title: 'Babak 8: Cetak Laporan Sah dengan 3 Kolom Tanda Tangan',
+                desc: 'Laporan pertanggungjawaban resmi siap dicetak dalam format A4 Landscape lengkap dengan Kop PGN, Rekapitulasi Finansial, dan 3 Tanda Tangan (DMO, QC, SM).',
+                step: 'LANGKAH 8 DARI 8'
+            }
+        };
+
+        // Helper: Move Cursor & Click Ripple
+        function moveCursorTo(element, offsetX = 10, offsetY = 10, callback = null) {
+            if (!element) return;
+            const rect = element.getBoundingClientRect();
+            const parentRect = presenterViewport.getBoundingClientRect();
+            const targetX = rect.left - parentRect.left + offsetX;
+            const targetY = rect.top - parentRect.top + offsetY;
+
+            cursor.style.transform = `translate(${targetX}px, ${targetY}px)`;
+
+            setTimeout(() => {
+                cursorRipple.classList.remove('click-pulse');
+                void cursorRipple.offsetWidth; // reflow
+                cursorRipple.classList.add('click-pulse');
+                if (callback) callback();
+            }, 450);
+        }
+
+        // Helper: Typewriter Effect
+        function typeWriter(inputElement, text, duration = 800, callback = null) {
+            if (!inputElement) return;
+            inputElement.classList.add('typing-active');
+            inputElement.value = '';
+            let index = 0;
+            const interval = duration / (text.length || 1);
+
+            const timer = setInterval(() => {
+                if (index < text.length) {
+                    inputElement.value += text[index];
+                    index++;
+                } else {
+                    clearInterval(timer);
+                    inputElement.classList.remove('typing-active');
+                    if (callback) callback();
+                }
+            }, interval);
+        }
+
+        // Switch Scene
+        function setScene(sceneNumber) {
+            currentScene = sceneNumber;
+            const config = scenesConfig[sceneNumber];
+
+            // 1. Update Banner
+            bannerRoleBadge.className = `callout-role-badge ${config.roleClass}`;
+            bannerRoleBadge.innerHTML = `<i class="bi bi-person-badge-fill"></i> ${config.role}`;
+            bannerTitle.textContent = config.title;
+            bannerDesc.textContent = config.desc;
+            bannerStepCount.textContent = config.step;
+
+            // 2. Update Topbar & Sidebar
+            sidebarUserName.textContent = config.userName;
+            sidebarUserRole.textContent = config.userRole;
+            topbarAvatar.textContent = config.avatar;
+            topbarCurrentNav.textContent = config.currentNav;
+            topbarPageTitle.textContent = config.pageTitle;
+
+            // Update active nav link
+            Object.values(navItems).forEach(item => item && item.classList.remove('active'));
+            if (navItems[config.activeNav]) {
+                navItems[config.activeNav].classList.add('active');
+            }
+
+            // 3. Update Scene Viewport
+            document.querySelectorAll('.scene-container').forEach(c => c.classList.remove('active'));
+            const targetScene = document.getElementById(`scene${sceneNumber}`);
+            if (targetScene) targetScene.classList.add('active');
+
+            // 4. Update Pill Buttons
+            scenePills.forEach(p => {
+                p.classList.toggle('active', parseInt(p.getAttribute('data-scene')) === sceneNumber);
+            });
+
+            // 5. Trigger Scene Animations
+            triggerSceneAnimation(sceneNumber);
+        }
+
+        // Scene Specific Animations
+        function triggerSceneAnimation(sn) {
+            if (sn === 1) {
+                const inId = document.getElementById('inProjectId');
+                const inName = document.getElementById('inProjectName');
+                const inPagu = document.getElementById('inProjectPagu');
+                const paguTerbilang = document.getElementById('paguTerbilang');
+                const btnSubmit = document.getElementById('btnSubmitProject');
+
+                setTimeout(() => {
+                    moveCursorTo(inId, 40, 15, () => {
+                        typeWriter(inId, 'PRJ-2026-PGN-001', 600, () => {
+                            moveCursorTo(inName, 60, 15, () => {
+                                typeWriter(inName, 'Operasi & Pemeliharaan Gas GMS', 700, () => {
+                                    moveCursorTo(inPagu, 40, 15, () => {
+                                        typeWriter(inPagu, '2.500.000.000', 500, () => {
+                                            paguTerbilang.textContent = 'Rp 2.500.000.000 (Dua Koma Lima Miliar Rupiah)';
+                                            moveCursorTo(btnSubmit, 40, 15);
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                }, 300);
+            } else if (sn === 2) {
+                const inPo = document.getElementById('inPoNumber');
+                const inTitle = document.getElementById('inPoTitle');
+                const inVal = document.getElementById('inPoValue');
+                const btnSub = document.getElementById('btnSubmitPO');
+
+                setTimeout(() => {
+                    moveCursorTo(inPo, 50, 15, () => {
+                        typeWriter(inPo, 'PO/2026/PGN-SCM/014', 600, () => {
+                            moveCursorTo(inTitle, 70, 15, () => {
+                                typeWriter(inTitle, 'Pengadaan Pipa High-Pressure Gas', 600, () => {
+                                    moveCursorTo(inVal, 50, 15, () => {
+                                        typeWriter(inVal, '850.000.000', 500, () => {
+                                            moveCursorTo(btnSub, 50, 15);
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                }, 300);
+            } else if (sn === 3) {
+                const row = document.getElementById('invoiceRowTarget');
+                setTimeout(() => {
+                    moveCursorTo(row, 200, 20);
+                }, 400);
+            } else if (sn === 4) {
+                const bar = document.getElementById('costProgressBar');
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = '32.8%';
+                    moveCursorTo(bar, 100, 5);
+                }, 500);
+            } else if (sn === 5) {
+                const inBasto = document.getElementById('inBastoNo');
+                const dropBox = document.getElementById('bastoUploadBox');
+                const fileName = document.getElementById('bastoFileName');
+                const btnSub = document.getElementById('btnSubmitBasto');
+
+                setTimeout(() => {
+                    moveCursorTo(inBasto, 50, 15, () => {
+                        typeWriter(inBasto, '004/BASTO/SMO/2026', 600, () => {
+                            moveCursorTo(dropBox, 150, 40, () => {
+                                fileName.innerHTML = '<i class="bi bi-file-earmark-check-fill text-success me-1"></i> BASTO_Fisik_Signed.pdf <span class="badge bg-success ms-1">3.4 MB Terunggah</span>';
+                                moveCursorTo(btnSub, 60, 15);
+                            });
+                        });
+                    });
+                }, 300);
+            } else if (sn === 6) {
+                const btnQc = document.getElementById('btnSubmitQC');
+                const notice = document.getElementById('qcPassNotice');
+                const badge = document.getElementById('qcStatusBadge');
+
+                const items = [
+                    { check: document.getElementById('qcCheck1'), ico: document.getElementById('icoQc1') },
+                    { check: document.getElementById('qcCheck2'), ico: document.getElementById('icoQc2') },
+                    { check: document.getElementById('qcCheck3'), ico: document.getElementById('icoQc3') },
+                    { check: document.getElementById('qcCheck4'), ico: document.getElementById('icoQc4') }
+                ];
+
+                items.forEach(it => {
+                    it.check.style.background = '#ffffff';
+                    it.ico.className = 'bi bi-square text-muted';
+                });
+                btnQc.disabled = true;
+
+                let delay = 300;
+                items.forEach((it, idx) => {
+                    setTimeout(() => {
+                        moveCursorTo(it.check, 250, 18, () => {
+                            it.check.style.background = '#ECFDF5';
+                            it.check.style.borderColor = '#A7F3D0';
+                            it.ico.className = 'bi bi-check-square-fill text-success fs-5';
+                            if (idx === items.length - 1) {
+                                btnQc.disabled = false;
+                                notice.innerHTML = '<span class="text-success fw-bold"><i class="bi bi-check2-circle me-1"></i> Seluruh 4 Butir Mutu Lolos Verifikasi</span>';
+                                badge.className = 'badge bg-success text-white px-2.5 py-1.5 shadow-sm';
+                                badge.innerHTML = '<i class="bi bi-patch-check-fill me-1"></i> Status: QC PASSED';
+                                moveCursorTo(btnQc, 50, 15);
+                            }
+                        });
+                    }, delay);
+                    delay += 750;
+                });
+            } else if (sn === 7) {
+                const btnApprove = document.getElementById('btnApproveSM');
+                const statusTxt = document.getElementById('smApprovalStatus');
+
+                setTimeout(() => {
+                    moveCursorTo(btnApprove, 70, 20, () => {
+                        btnApprove.className = 'btn btn-secondary fw-bold px-4 py-2 disabled';
+                        btnApprove.innerHTML = '<i class="bi bi-check-all me-1"></i> Disetujui (Approved)';
+                        statusTxt.className = 'badge bg-success text-white border font-monospace';
+                        statusTxt.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> Status: APPROVED &amp; SAH';
+                    });
+                }, 1000);
+            } else if (sn === 8) {
+                setTimeout(() => {
+                    cursor.style.transform = 'translate(600px, 350px)';
+                }, 400);
+            }
+        }
+
+        // Playback Loop
+        function play() {
+            isPlaying = true;
+            playIcon.className = 'bi bi-pause-fill';
+            btnPlayPause.title = 'Pause (Spasi)';
+            runPlaybackCycle();
+        }
+
+        function pause() {
+            isPlaying = false;
+            playIcon.className = 'bi bi-play-fill';
+            btnPlayPause.title = 'Play (Spasi)';
+            clearTimeout(sceneTimer);
+        }
+
+        function runPlaybackCycle() {
+            if (!isPlaying) return;
+
+            const durationMs = (sceneDurations[currentScene - 1] * 1000) / playbackSpeed;
+
+            // Update Progress Scrubber
+            let start = Date.now();
+            const initialSceneProgress = ((currentScene - 1) / 8) * 100;
+
+            function updateProgress() {
+                if (!isPlaying) return;
+                const elapsed = Date.now() - start;
+                const currentScenePct = Math.min(elapsed / durationMs, 1) * (100 / 8);
+                const totalPct = Math.min(initialSceneProgress + currentScenePct, 100);
+                timelineProgress.style.width = `${totalPct}%`;
+
+                const totalElapsedSec = Math.floor((totalPct / 100) * totalDuration);
+                const mins = String(Math.floor(totalElapsedSec / 60)).padStart(2, '0');
+                const secs = String(totalElapsedSec % 60).padStart(2, '0');
+                timeCurrent.textContent = `${mins}:${secs}`;
+
+                if (elapsed < durationMs) {
+                    animationFrame = requestAnimationFrame(updateProgress);
+                }
+            }
+
+            animationFrame = requestAnimationFrame(updateProgress);
+
+            sceneTimer = setTimeout(() => {
+                if (currentScene < 8) {
+                    setScene(currentScene + 1);
+                    runPlaybackCycle();
+                } else {
+                    pause();
+                    timelineProgress.style.width = '100%';
+                    timeCurrent.textContent = '00:40';
+                }
+            }, durationMs);
+        }
+
+        // Event Listeners
+        btnPlayPause.addEventListener('click', () => {
+            if (isPlaying) pause();
+            else {
+                if (currentScene >= 8 && timelineProgress.style.width === '100%') {
+                    setScene(1);
+                    timelineProgress.style.width = '0%';
+                }
+                play();
+            }
+        });
+
+        btnRestart.addEventListener('click', () => {
+            pause();
+            timelineProgress.style.width = '0%';
+            timeCurrent.textContent = '00:00';
+            setScene(1);
+        });
+
+        scenePills.forEach(pill => {
+            pill.addEventListener('click', (e) => {
+                pause();
+                const s = parseInt(e.target.getAttribute('data-scene'));
+                setScene(s);
+                const pct = ((s - 1) / 8) * 100;
+                timelineProgress.style.width = `${pct}%`;
+                const elapsed = Math.floor((pct / 100) * totalDuration);
+                timeCurrent.textContent = `00:${String(elapsed).padStart(2, '0')}`;
+            });
+        });
+
+        speedSelect.addEventListener('change', (e) => {
+            playbackSpeed = parseFloat(e.target.value);
+        });
+
+        btnFullscreen.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                presenterViewport.requestFullscreen().catch(err => alert(err.message));
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        // Keyboard Shortcut: Spasi untuk Play/Pause
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
+                e.preventDefault();
+                btnPlayPause.click();
+            }
+        });
+
+        // Initial setup
+        setScene(1);
+    </script>
+</body>
+</html>

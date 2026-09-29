@@ -1,0 +1,270 @@
+<mxfile host="app.diagrams.net" modified="2026-09-15T14:00:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="usecase-admin-radial-hierarchy" name="Use Case Admin - Hierarki Modul">
+    <mxGraphModel dx="1400" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1850" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ================= SYSTEM BOUNDARY ================= -->
+        <mxCell id="sys_boundary" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#334155;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="250" y="40" width="880" height="1750" as="geometry" />
+        </mxCell>
+
+        <!-- ================= ACTOR: ADMIN ================= -->
+        <mxCell id="actor_admin" value="&lt;b style=&quot;font-size:13px; font-family:Segoe UI;&quot;&gt;Admin&lt;/b&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;strokeColor=#1E293B;strokeWidth=1.5;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="60" y="860" width="90" height="170" as="geometry" />
+        </mxCell>
+
+
+        <!-- ========================================================================= -->
+        <!-- MODUL 1: MODUL PENGAWASAN, AKUN & HAK AKSES (BIRU) -->
+        <!-- ========================================================================= -->
+        <!-- Parent Oval Modul 1 -->
+        <mxCell id="modul_1" value="&lt;b style=&quot;font-size:12px; font-family:Segoe UI; color:#0F172A;&quot;&gt;Modul Pengawasan, Akun &amp;amp;&lt;br&gt;Hak Akses (RBAC)&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1E293B;strokeWidth=1.8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="320" y="140" width="230" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Use Cases Anak Modul 1 -->
+        <mxCell id="uc_1_1" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#1E3A8A;&quot;&gt;Login &amp;amp; Autentikasi Sistem&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="60" width="260" height="48" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_1_2" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#1E3A8A;&quot;&gt;Kelola Data Pengguna &amp;amp; Role RBAC&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Tambah, Edit, Toggle, Reset Password)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="125" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_1_3" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#1E3A8A;&quot;&gt;Melakukan Impersonasi User&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Supervisi Langsung sebagai Role Lain)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="195" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_1_4" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#1E3A8A;&quot;&gt;Memantau Jejak Audit Log &amp;amp; Kiosk TV&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Pelacakan Aktivitas &amp;amp; Command Center)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="265" width="260" height="52" as="geometry" />
+        </mxCell>
+
+
+        <!-- ========================================================================= -->
+        <!-- MODUL 2: MODUL MASTER DATA & KONTROL PERIODE (TOSKA) -->
+        <!-- ========================================================================= -->
+        <!-- Parent Oval Modul 2 -->
+        <mxCell id="modul_2" value="&lt;b style=&quot;font-size:12px; font-family:Segoe UI; color:#0F172A;&quot;&gt;Modul Master Data &amp;amp;&lt;br&gt;Kontrol Periode Transaksi&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1E293B;strokeWidth=1.8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="320" y="440" width="230" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Use Cases Anak Modul 2 -->
+        <mxCell id="uc_2_1" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#0F766E;&quot;&gt;Kunci / Buka Periode Transaksi&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Period Locking: Bulan, Triwulan, Semester)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CCFBF1;strokeColor=#14B8A6;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="360" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_2_2" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#0F766E;&quot;&gt;Monitoring Master Proyek &amp;amp; Pagu&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Read-Only • Pendaftaran Khusus DMO)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CCFBF1;strokeColor=#14B8A6;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="430" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_2_3" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#0F766E;&quot;&gt;Kelola Master Vendor &amp;amp; Pelanggan&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Master Rekanan &amp;amp; Sinkronisasi Data)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CCFBF1;strokeColor=#14B8A6;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="500" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_2_4" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#0F766E;&quot;&gt;Kelola Pejabat Penandatangan&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Signers Setting BASTO &amp;amp; Berita Acara)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CCFBF1;strokeColor=#14B8A6;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="570" width="260" height="52" as="geometry" />
+        </mxCell>
+
+
+        <!-- ========================================================================= -->
+        <!-- MODUL 3: MODUL PENGELOLAAN REALISASI & PROGNOSA (ORANYE) -->
+        <!-- ========================================================================= -->
+        <!-- Parent Oval Modul 3 -->
+        <mxCell id="modul_3" value="&lt;b style=&quot;font-size:12px; font-family:Segoe UI; color:#0F172A;&quot;&gt;Modul Pengelolaan Realisasi&lt;br&gt;&amp;amp; Prognosa Anggaran&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1E293B;strokeWidth=1.8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="320" y="780" width="230" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Use Cases Anak Modul 3 -->
+        <mxCell id="uc_3_1" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#9A3412;&quot;&gt;Kelola Data Realisasi Biaya&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Entri, Edit, Hapus Realisasi &amp;amp; Evidence)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#F97316;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="670" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_3_2" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#9A3412;&quot;&gt;Import Realisasi dari Excel&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Upload Template &amp;amp; History Impor DMO)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#F97316;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="740" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_3_3" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#9A3412;&quot;&gt;Export Laporan Realisasi ke Excel&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Rekap Finansial &amp;amp; Multi-Currency API)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#F97316;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="810" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_3_4" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#9A3412;&quot;&gt;Monitoring Prognosa Budget&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Evaluasi Anggaran &amp;amp; Monthly Update)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#F97316;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="880" width="260" height="52" as="geometry" />
+        </mxCell>
+
+
+        <!-- ========================================================================= -->
+        <!-- MODUL 4: MODUL PILAR 3 & PROCUREMENT HUB (UNGU) -->
+        <!-- ========================================================================= -->
+        <!-- Parent Oval Modul 4 -->
+        <mxCell id="modul_4" value="&lt;b style=&quot;font-size:12px; font-family:Segoe UI; color:#0F172A;&quot;&gt;Modul Pilar 3 &amp;amp;&lt;br&gt;Procurement Hub&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1E293B;strokeWidth=1.8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1130" width="230" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Use Cases Anak Modul 4 -->
+        <mxCell id="uc_4_1" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#5B21B6;&quot;&gt;Pilar 3: Monitoring Invoice Vendor&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Daftar Tagihan Rekanan &amp;amp; Status Update)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#8B5CF6;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="990" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_4_2" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#5B21B6;&quot;&gt;Supervisi Purchase Order (PO)&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Surat Pesanan &amp;amp; Batas Pagu Kontrak)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#8B5CF6;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1060" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_4_3" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#5B21B6;&quot;&gt;Supervisi 3-Way Matching&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(PO + BASTO + Invoice &amp;rarr; COMPLETED)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#8B5CF6;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1130" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_4_4" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#5B21B6;&quot;&gt;Pilar 2: Monitoring Cost Kontrak&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Cost vs Realisasi vs Pagu Anggaran)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#8B5CF6;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1200" width="260" height="52" as="geometry" />
+        </mxCell>
+
+
+        <!-- ========================================================================= -->
+        <!-- MODUL 5: MODUL PILAR 1 BASTO & DOKUMEN PROYEK (HIJAU) -->
+        <!-- ========================================================================= -->
+        <!-- Parent Oval Modul 5 -->
+        <mxCell id="modul_5" value="&lt;b style=&quot;font-size:12px; font-family:Segoe UI; color:#0F172A;&quot;&gt;Modul Pilar 1 BASTO &amp;amp;&lt;br&gt;Dokumen Operasional Proyek&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1E293B;strokeWidth=1.8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1500" width="230" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- Use Cases Anak Modul 5 -->
+        <mxCell id="uc_5_1" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#047857;&quot;&gt;Pilar 1: Monitoring BASTO&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Tracking Status BASTO Seluruh Proyek)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1320" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_5_2" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#047857;&quot;&gt;Kelola Work Order (SPK) Proyek&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Alokasi Termin &amp;amp; Sub-Pekerjaan)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1390" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_5_3" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#047857;&quot;&gt;Memantau Kalender Jadwal Bayar&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Timeline Jatuh Tempo Pembayaran)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1460" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_5_4" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#047857;&quot;&gt;Supervisi Persetujuan BASTO&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Batch Approve, QC Verify &amp;amp; Override)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1530" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_5_5" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#047857;&quot;&gt;Lihat Executive Portfolio Summary&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Laporan Ringkasan Eksekutif Terpusat)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1600" width="260" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="uc_5_6" value="&lt;b style=&quot;font-size:11.5px; font-family:Segoe UI; color:#047857;&quot;&gt;Quick Search Pencarian Proyek&lt;br&gt;&lt;span style=&quot;font-size:10px; font-weight:normal;&quot;&gt;(Pencarian Cepat Data &amp;amp; Dokumen Proyek)&lt;/span&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="680" y="1670" width="260" height="52" as="geometry" />
+        </mxCell>
+
+
+        <!-- ========================================================================= -->
+        <!-- GARIS PENGHUBUNG: ACTOR -> 5 MODUL PARENT (LEVEL 1) -->
+        <!-- ========================================================================= -->
+        <mxCell id="line_act_m1" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.5;endArrow=none;" edge="1" source="actor_admin" target="modul_1" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_act_m2" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.5;endArrow=none;" edge="1" source="actor_admin" target="modul_2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_act_m3" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.5;endArrow=none;" edge="1" source="actor_admin" target="modul_3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_act_m4" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.5;endArrow=none;" edge="1" source="actor_admin" target="modul_4" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_act_m5" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.5;endArrow=none;" edge="1" source="actor_admin" target="modul_5" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ========================================================================= -->
+        <!-- GARIS PENGHUBUNG: MODUL 1 -> USE CASE ANAK -->
+        <!-- ========================================================================= -->
+        <mxCell id="line_m1_c1" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_1" target="uc_1_1" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m1_c2" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_1" target="uc_1_2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m1_c3" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_1" target="uc_1_3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m1_c4" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_1" target="uc_1_4" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ========================================================================= -->
+        <!-- GARIS PENGHUBUNG: MODUL 2 -> USE CASE ANAK -->
+        <!-- ========================================================================= -->
+        <mxCell id="line_m2_c1" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_2" target="uc_2_1" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m2_c2" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_2" target="uc_2_2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m2_c3" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_2" target="uc_2_3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m2_c4" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_2" target="uc_2_4" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ========================================================================= -->
+        <!-- GARIS PENGHUBUNG: MODUL 3 -> USE CASE ANAK -->
+        <!-- ========================================================================= -->
+        <mxCell id="line_m3_c1" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_3" target="uc_3_1" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m3_c2" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_3" target="uc_3_2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m3_c3" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_3" target="uc_3_3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m3_c4" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_3" target="uc_3_4" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ========================================================================= -->
+        <!-- GARIS PENGHUBUNG: MODUL 4 -> USE CASE ANAK -->
+        <!-- ========================================================================= -->
+        <mxCell id="line_m4_c1" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_4" target="uc_4_1" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m4_c2" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_4" target="uc_4_2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m4_c3" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_4" target="uc_4_3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m4_c4" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_4" target="uc_4_4" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+
+        <!-- ========================================================================= -->
+        <!-- GARIS PENGHUBUNG: MODUL 5 -> USE CASE ANAK -->
+        <!-- ========================================================================= -->
+        <mxCell id="line_m5_c1" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_5" target="uc_5_1" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m5_c2" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_5" target="uc_5_2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m5_c3" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_5" target="uc_5_3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m5_c4" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_5" target="uc_5_4" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m5_c5" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_5" target="uc_5_5" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="line_m5_c6" style="edgeStyle=straight;html=1;strokeColor=#334155;strokeWidth=1.2;endArrow=none;" edge="1" source="modul_5" target="uc_5_6" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
