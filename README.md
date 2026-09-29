@@ -25,9 +25,6 @@ php artisan key:generate
 php artisan serve
 ```
 
-**Preview dashboard**
-![dashboard](image.png)
-
 # Punya saran, ide, atau pertanyaan?
 
 Kirimkan dengan [membuka issue baru](https://github.com/M-Hidayatullah/base-admin-laravel-10-skydash/issues/new)
